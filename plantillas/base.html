@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PhishTrain: ambiente interactivo para el entrenamiento en la identificación de ataques phishing.">
+    <title>{% block titulo %}PhishTrain{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L4 5v6c0 5 3.4 8.7 8 9.9 4.6-1.2 8-4.9 8-9.9V5l-8-3z' fill='%230f6cbd'/%3E%3Cpath d='M8.5 12.2l2.4 2.4 4.6-4.9' stroke='white' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{% static 'css/juego.css' %}">
+</head>
+<body class="{% block clase_body %}{% endblock %}">
+    {% block contenido %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

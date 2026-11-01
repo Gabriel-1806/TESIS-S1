@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block clase_body %}portada{% endblock %}
+{% block contenido %}
+<header class="portada-cabecera">
+    <span class="marca"><span class="marca-logo">PT</span>PhishTrain</span>
+    {% if user.is_staff %}<a class="enlace-admin" href="{% url 'admin:index' %}">Administración</a>{% endif %}
+</header>
+<main class="portada-centro">
+    <h1>PhishTrain</h1>
+    <p class="portada-titulo">Aprende a identificar ataques phishing</p>
+    <p class="portada-texto">Analiza correos en una bandeja similar a Outlook, aprende a reconocer las señales de cada tipo de ataque y gana sus insignias.</p>
+    <div class="portada-acciones">
+        <a class="boton boton-principal boton-grande" href="{% url 'juego' %}">{% if empezada %}Continuar{% else %}Iniciar{% endif %}</a>
+        {% if empezada %}
+        <form method="post" action="{% url 'reiniciar' %}">{% csrf_token %}<button type="submit" class="boton boton-secundario">Empezar de nuevo</button></form>
+        {% endif %}
+    </div>
+    {% if empezada %}<p class="portada-nota">Llevas {{ insignias }} de {{ total_ataques }} insignias.</p>{% endif %}
+</main>
+<footer class="portada-pie">PhishTrain · Prototipo académico para el entrenamiento en la identificación de ataques phishing</footer>
+{% endblock %}

@@ -1,0 +1,155 @@
+{
+  "validacion": {
+    "problemas_en_el_archivo_real": 0,
+    "casos": [
+      {
+        "error": "Pregunta con 4 respuestas",
+        "detectado": true,
+        "mensaje": "PC-B2: tiene 4 respuestas y se piden 5."
+      },
+      {
+        "error": "Pregunta sin respuesta correcta",
+        "detectado": true,
+        "mensaje": "PC-B2: debe tener exactamente una respuesta correcta."
+      },
+      {
+        "error": "Pregunta con dos respuestas correctas",
+        "detectado": true,
+        "mensaje": "PC-B2: debe tener exactamente una respuesta correcta."
+      },
+      {
+        "error": "flag_respuesta con un valor distinto de 0 o 1",
+        "detectado": true,
+        "mensaje": "PC-B2: flag_respuesta debe ser 1 (correcta) o 0 (incorrecta)."
+      },
+      {
+        "error": "Respuesta sin retroalimentación",
+        "detectado": true,
+        "mensaje": "PC-B2: hay respuestas sin texto o sin retroalimentación."
+      },
+      {
+        "error": "Marcador #id# sin indicador",
+        "detectado": true,
+        "mensaje": "PC-B2: el cuerpo usa #falta#, pero no hay un indicador con ese id."
+      },
+      {
+        "error": "Indicador que no aparece en el mensaje",
+        "detectado": true,
+        "mensaje": "PC-B2: el indicador suelto no aparece en el cuerpo ni coincide con el remitente o el adjunto."
+      },
+      {
+        "error": "Nivel sin preguntas",
+        "detectado": true,
+        "mensaje": "Phishing por correo/preguntas_avanzado: no tiene preguntas."
+      },
+      {
+        "error": "Insignia sin figura",
+        "detectado": true,
+        "mensaje": "Phishing por correo: la insignia necesita nombre y figura."
+      },
+      {
+        "error": "Mensaje con id repetido",
+        "detectado": true,
+        "mensaje": "Identificador de mensaje repetido: PC-B1."
+      }
+    ],
+    "detectados": 10,
+    "total": 10
+  },
+  "adaptabilidad": {
+    "jugadores_por_escenario": 1000,
+    "escenarios": [
+      {
+        "probabilidad_de_acierto": 0.2,
+        "preguntas_promedio_para_8_insignias": 120.4,
+        "desviacion": 21.6,
+        "minimo": 59,
+        "maximo": 212,
+        "preguntas_promedio_por_ruta": 15.05,
+        "esperado_teorico_por_ruta": 15.0,
+        "porcentaje_con_ruta_minima": 0,
+        "preguntas_repetidas_seguidas": 0
+      },
+      {
+        "probabilidad_de_acierto": 0.4,
+        "preguntas_promedio_para_8_insignias": 59.8,
+        "desviacion": 9.4,
+        "minimo": 33,
+        "maximo": 94,
+        "preguntas_promedio_por_ruta": 7.48,
+        "esperado_teorico_por_ruta": 7.5,
+        "porcentaje_con_ruta_minima": 0,
+        "preguntas_repetidas_seguidas": 0
+      },
+      {
+        "probabilidad_de_acierto": 0.6,
+        "preguntas_promedio_para_8_insignias": 40.0,
+        "desviacion": 5.2,
+        "minimo": 26,
+        "maximo": 62,
+        "preguntas_promedio_por_ruta": 5.0,
+        "esperado_teorico_por_ruta": 5.0,
+        "porcentaje_con_ruta_minima": 0,
+        "preguntas_repetidas_seguidas": 0
+      },
+      {
+        "probabilidad_de_acierto": 0.8,
+        "preguntas_promedio_para_8_insignias": 30.0,
+        "desviacion": 2.9,
+        "minimo": 24,
+        "maximo": 43,
+        "preguntas_promedio_por_ruta": 3.75,
+        "esperado_teorico_por_ruta": 3.75,
+        "porcentaje_con_ruta_minima": 0.9,
+        "preguntas_repetidas_seguidas": 0
+      },
+      {
+        "probabilidad_de_acierto": 1.0,
+        "preguntas_promedio_para_8_insignias": 24,
+        "desviacion": 0.0,
+        "minimo": 24,
+        "maximo": 24,
+        "preguntas_promedio_por_ruta": 3.0,
+        "esperado_teorico_por_ruta": 3.0,
+        "porcentaje_con_ruta_minima": 100,
+        "preguntas_repetidas_seguidas": 0
+      }
+    ]
+  },
+  "rapidez": {
+    "operaciones": [
+      {
+        "operacion": "estado",
+        "peticiones": 200,
+        "promedio_ms": 45.91,
+        "mediana_ms": 44.5,
+        "p95_ms": 68.16,
+        "maximo_ms": 100.29
+      },
+      {
+        "operacion": "abrir",
+        "peticiones": 200,
+        "promedio_ms": 8.44,
+        "mediana_ms": 8.42,
+        "p95_ms": 12.17,
+        "maximo_ms": 18.02
+      },
+      {
+        "operacion": "pregunta",
+        "peticiones": 200,
+        "promedio_ms": 6.88,
+        "mediana_ms": 6.65,
+        "p95_ms": 10.0,
+        "maximo_ms": 11.54
+      },
+      {
+        "operacion": "responder",
+        "peticiones": 200,
+        "promedio_ms": 47.11,
+        "mediana_ms": 45.33,
+        "p95_ms": 68.63,
+        "maximo_ms": 88.59
+      }
+    ]
+  }
+}

@@ -1,0 +1,4111 @@
+{
+  "tipos_de_ataque": [
+    {
+      "nombre": "Phishing por correo",
+      "descripcion": "Es el ataque más común: un correo masivo que se hace pasar por un servicio conocido (tu banco, Microsoft, la mesa de ayuda) para que entregues tu contraseña o hagas clic en un enlace falso. Se envía a miles de personas a la vez, por eso suele ser genérico. Qué hacer: No uses el enlace: entra por tu cuenta al portal oficial y reporta el correo al área de seguridad.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "PC-B1",
+            "remitente": {
+              "nombre": "Mesa de Ayuda TI",
+              "correo": "soporte@empresa-seguridad.info"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 08:12",
+            "asunto": "Su contraseña expira hoy: actualícela ahora",
+            "cuerpo": "#PC-B1-2#:\n\nSu contraseña corporativa expira hoy. #PC-B1-3#.\n\nActualice sus datos mediante el enlace y #PC-B1-4#.\n\nAtentamente,\nMesa de Ayuda\n\n#PC-B1-5#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-B1-1",
+                "texto_indicador": "soporte@empresa-seguridad.info",
+                "retroalimentacion": "Remitente que imita al área real. Dice «Mesa de Ayuda TI», pero la dirección es soporte@empresa-seguridad.info. Tu empresa usa empresa.com: este dominio solo se le parece."
+              },
+              {
+                "id_indicador": "PC-B1-2",
+                "texto_indicador": "Estimado usuario",
+                "retroalimentacion": "Saludo genérico. «Estimado usuario» en lugar de tu nombre: el mismo correo se envió a muchas personas."
+              },
+              {
+                "id_indicador": "PC-B1-3",
+                "texto_indicador": "Si no la actualiza en las próximas 2 horas, su cuenta será bloqueada",
+                "retroalimentacion": "Urgencia y amenaza. Te da 2 horas y amenaza con bloquear tu cuenta para que actúes sin pensar."
+              },
+              {
+                "id_indicador": "PC-B1-4",
+                "texto_indicador": "confirme su contraseña actual",
+                "retroalimentacion": "Pide tu contraseña. Ningún área seria te pide tu contraseña actual por correo. Ese es el objetivo del ataque."
+              },
+              {
+                "id_indicador": "PC-B1-5",
+                "texto_indicador": "Portal corporativo de contraseñas",
+                "enlace": "https://empresa-seguridad.info/password",
+                "retroalimentacion": "Enlace que lleva a otro sitio. El texto dice «Portal corporativo», pero el destino real es empresa-seguridad.info/password, un sitio externo."
+              }
+            ]
+          },
+          "enunciado": "Después de revisar sus marcadores, ¿qué tipo de ataque es este correo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Phishing por correo: un mensaje masivo que se hace pasar por la mesa de ayuda para robar tu contraseña",
+              "retroalimentacion": "¡Correcto! Usa un dominio que imita al de tu empresa, un saludo genérico, urgencia y un enlace a otro sitio para quedarse con tu contraseña."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Un aviso real de la mesa de ayuda",
+              "retroalimentacion": "La mesa de ayuda escribe desde empresa.com y nunca te pide tu contraseña actual por correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Spear phishing dirigido a ti",
+              "retroalimentacion": "No usa tu nombre ni datos tuyos: dice «Estimado usuario», por eso es un correo masivo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Un adjunto malicioso",
+              "retroalimentacion": "No trae ningún archivo; el riesgo está en el enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Quishing",
+              "retroalimentacion": "No hay ningún código QR; el engaño está en un enlace normal."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-B2",
+            "remitente": {
+              "nombre": "Microsoft 365",
+              "correo": "notificacion@micros0ft-cuenta.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su buzón está lleno",
+            "cuerpo": "Hola usuario:\n\nSu buzón alcanzó el 99% de capacidad. Para seguir recibiendo correos, valide su cuenta con su contraseña en el siguiente enlace.\n\n#PC-B2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-B2-1",
+                "texto_indicador": "notificacion@micros0ft-cuenta.com",
+                "retroalimentacion": "Cambiar una letra por un número es un truco típico para que un dominio falso pase como el real."
+              },
+              {
+                "id_indicador": "PC-B2-enlace",
+                "texto_indicador": "Ampliar almacenamiento",
+                "enlace": "https://micros0ft-cuenta.com/validar",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Cuál es la señal más clara de que es phishing?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El remitente escribe Microsoft con un cero (micros0ft-cuenta.com)",
+              "retroalimentacion": "¡Exacto! Cambiar una letra por un número es un truco típico para que un dominio falso pase como el real."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que hable del almacenamiento del buzón",
+              "retroalimentacion": "Los avisos de almacenamiento existen y son normales; el tema no es la señal, sino quién lo envía y qué pide."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que tenga un botón",
+              "retroalimentacion": "Muchos correos legítimos tienen botones. Lo importante es a dónde llevan."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que llegue en la mañana",
+              "retroalimentacion": "La hora de llegada no dice nada sobre si un correo es seguro."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que esté escrito en español",
+              "retroalimentacion": "El idioma no es una señal de phishing."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-B3",
+            "remitente": {
+              "nombre": "Netflix",
+              "correo": "pagos@netflix-cuentas.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Tu pago fue rechazado",
+            "cuerpo": "Hola:\n\nNo pudimos procesar tu pago. #PC-B3-1# o tu membresía será cancelada.\n\n#PC-B3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-B3-1",
+                "texto_indicador": "Actualiza tu método de pago en 24 horas",
+                "retroalimentacion": "Si hay un problema real con tu pago, lo verás al entrar por tu cuenta, sin depender del enlace del correo."
+              },
+              {
+                "id_indicador": "PC-B3-enlace",
+                "texto_indicador": "Actualizar pago",
+                "enlace": "https://netflix-cuentas.net/pago",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Qué es lo más seguro hacer con este correo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No usar el enlace y revisar tu cuenta entrando tú mismo a la aplicación o al sitio oficial",
+              "retroalimentacion": "¡Correcto! Si hay un problema real con tu pago, lo verás al entrar por tu cuenta, sin depender del enlace del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacer clic rápido para no perder la membresía",
+              "retroalimentacion": "Esa prisa es lo que busca el atacante; el plazo de 24 horas es una técnica de presión."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder el correo con los datos de tu tarjeta",
+              "retroalimentacion": "Nunca envíes datos de tarjeta por correo: quien lo recibe es el atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a tus amigos para avisarles",
+              "retroalimentacion": "Reenviarlo puede hacer que otros caigan. Lo correcto es reportarlo y eliminarlo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrir el enlace solo para ver qué pasa",
+              "retroalimentacion": "Abrir la página falsa ya te expone, y es fácil terminar escribiendo tus datos."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "PC-I1",
+            "remitente": {
+              "nombre": "Recursos Humanos",
+              "correo": "rrhh@empresa-beneficios.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Bono por desempeño 2026: confirme sus datos",
+            "cuerpo": "Hola:\n\nFelicitaciones, fue seleccionado para el bono por desempeño. Para depositarlo, ingrese al portal de beneficios con su usuario y contraseña de red antes de las 18:00.\n\n#PC-I1-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-I1-1",
+                "texto_indicador": "rrhh@empresa-beneficios.com",
+                "retroalimentacion": "Recursos Humanos escribe desde empresa.com y nunca necesita tu contraseña para pagarte un bono."
+              },
+              {
+                "id_indicador": "PC-I1-enlace",
+                "texto_indicador": "Portal de beneficios",
+                "enlace": "https://empresa-beneficios.com/login",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El correo usa el nombre de Recursos Humanos y ofrece un bono. ¿Qué lo delata como phishing?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Viene de un dominio distinto a empresa.com y pide tu contraseña de red",
+              "retroalimentacion": "¡Correcto! Recursos Humanos escribe desde empresa.com y nunca necesita tu contraseña para pagarte un bono."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que ofrezca un bono, porque las empresas nunca dan bonos",
+              "retroalimentacion": "Las empresas sí dan bonos. La oferta es el anzuelo, pero la prueba está en el dominio y en lo que pide."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga «felicitaciones»",
+              "retroalimentacion": "Una felicitación no es una señal por sí sola."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que tenga un horario límite",
+              "retroalimentacion": "El plazo presiona, pero muchos avisos reales tienen fechas. Lo decisivo es el dominio y el pedido de tu contraseña."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que no tenga un archivo adjunto",
+              "retroalimentacion": "La mayoría del phishing no trae adjunto; que no lo tenga no dice nada."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-I2",
+            "remitente": {
+              "nombre": "Courier Express",
+              "correo": "envios@courier-express-pe.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "No pudimos entregar su paquete",
+            "cuerpo": "Intentamos entregar su paquete N.º 88213, pero no había nadie. Para reprogramar la entrega, #PC-I2-1# por gastos de almacenamiento en el enlace.\n\n#PC-I2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-I2-1",
+                "texto_indicador": "pague S/ 4.90",
+                "retroalimentacion": "El monto bajo hace que no sospeches, pero al pagar entregas los datos completos de tu tarjeta."
+              },
+              {
+                "id_indicador": "PC-I2-enlace",
+                "texto_indicador": "Reprogramar entrega",
+                "enlace": "https://courier-express-pe.com/pago",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "No esperas ningún paquete. ¿Cuál es el objetivo más probable del correo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Robar los datos de tu tarjeta con un pago pequeño que parece inofensivo",
+              "retroalimentacion": "¡Exacto! El monto bajo hace que no sospeches, pero al pagar entregas los datos completos de tu tarjeta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Entregarte realmente un paquete",
+              "retroalimentacion": "Si no esperas nada y te piden pagar desde un enlace, lo más probable es un engaño."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacerte una encuesta de satisfacción",
+              "retroalimentacion": "No hay ninguna encuesta: pide un pago."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Informarte de una promoción",
+              "retroalimentacion": "No ofrece ninguna promoción; pide dinero y datos."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Confirmar tu dirección para un sorteo",
+              "retroalimentacion": "No menciona sorteos. Su objetivo es el pago con tarjeta."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-I3",
+            "remitente": {
+              "nombre": "Soporte Zoom",
+              "correo": "soporte@zoom-licencias.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su licencia vence hoy",
+            "cuerpo": "Su licencia de Zoom vence hoy y perderá las grabaciones de sus reuniones. Renueve gratis iniciando sesión con su correo corporativo y contraseña.\n\n#PC-I3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-I3-1",
+                "texto_indicador": "soporte@zoom-licencias.com",
+                "retroalimentacion": "«Gratis» es otro anzuelo. Zoom usa zoom.us y una renovación nunca se hace entregando tu contraseña desde un correo."
+              },
+              {
+                "id_indicador": "PC-I3-enlace",
+                "texto_indicador": "Renovar licencia",
+                "enlace": "https://zoom-licencias.com/renovar",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "Un compañero dice que es seguro porque «es gratis». ¿Qué le respondes?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que no importa que sea gratis: pide la contraseña desde un dominio que no es zoom.us",
+              "retroalimentacion": "¡Correcto! «Gratis» es otro anzuelo. Zoom usa zoom.us y una renovación nunca se hace entregando tu contraseña desde un correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que tiene razón: si no cobra, no hay riesgo",
+              "retroalimentacion": "El riesgo no es el cobro, es la contraseña: con ella el atacante entra a tu correo corporativo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que es seguro porque menciona las grabaciones",
+              "retroalimentacion": "Mencionar las grabaciones sirve para asustarte con perder algo valioso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que solo es peligroso si tiene faltas de ortografía",
+              "retroalimentacion": "Muchos correos de phishing están bien escritos; las faltas no son una prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que lo abra desde el celular para estar más seguro",
+              "retroalimentacion": "Abrirlo desde el celular no cambia nada y hace más difícil ver la dirección real."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "PC-A1",
+            "remitente": {
+              "nombre": "Microsoft 365",
+              "correo": "no-reply@microsoft365.com-security.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Inicio de sesión inusual desde Lima, Perú",
+            "cuerpo": "Detectamos un inicio de sesión en su cuenta.\n\nSi fue usted, ignore este mensaje. Si no lo reconoce, proteja su cuenta revisando la actividad reciente.\n\n#PC-A1-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-A1-1",
+                "texto_indicador": "no-reply@microsoft365.com-security.net",
+                "retroalimentacion": "Un dominio se lee de derecha a izquierda: lo que manda es com-security.net. «microsoft365.com» al inicio es solo un adorno."
+              },
+              {
+                "id_indicador": "PC-A1-enlace",
+                "texto_indicador": "Revisar actividad",
+                "enlace": "https://microsoft365.com-security.net/activity",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El correo parece tranquilo y hasta dice que lo ignores si fuiste tú. ¿Qué detalle lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El dominio real es com-security.net; «microsoft365» es solo la parte inicial",
+              "retroalimentacion": "¡Exacto! Un dominio se lee de derecha a izquierda: lo que manda es com-security.net. «microsoft365.com» al inicio es solo un adorno."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga que lo ignores si fuiste tú",
+              "retroalimentacion": "Los avisos reales también dicen eso; los atacantes lo copian para parecer legítimos."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione Lima, Perú",
+              "retroalimentacion": "Una ubicación cercana hace creíble el mensaje, pero no es la prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que no tenga faltas de ortografía",
+              "retroalimentacion": "La buena redacción no garantiza nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que no pida datos directamente",
+              "retroalimentacion": "No los pide en el texto, pero el enlace lleva a una página falsa de inicio de sesión."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-A2",
+            "remitente": {
+              "nombre": "Mesa de Ayuda TI",
+              "correo": "soporte@empresa.co"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Lunes, 10:12",
+            "asunto": "Mantenimiento programado del correo: sábado 23:00",
+            "cuerpo": "Este sábado de 23:00 a 02:00 haremos mantenimiento del servidor de correo. Para conservar sus mensajes, migre su buzón antes del viernes con el asistente.\n\nGracias por su comprensión.\n\n#PC-A2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-A2-1",
+                "texto_indicador": "soporte@empresa.co",
+                "retroalimentacion": "Falta una letra: empresa.co es otro dominio. Los atacantes avanzados copian el formato de los avisos reales y cambian solo un detalle."
+              },
+              {
+                "id_indicador": "PC-A2-enlace",
+                "texto_indicador": "Asistente de migración",
+                "enlace": "https://empresa.co/migracion",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El mensaje es tranquilo, avisa con días de anticipación y usa un formato real. ¿Qué lo convierte en phishing?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El dominio es empresa.co y no empresa.com, y el asistente lleva fuera de la organización",
+              "retroalimentacion": "¡Correcto! Falta una letra: empresa.co es otro dominio. Los atacantes avanzados copian el formato de los avisos reales y cambian solo un detalle."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que avise con anticipación",
+              "retroalimentacion": "Avisar con tiempo es normal en un mantenimiento real; los atacantes lo imitan para parecer creíbles."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el mantenimiento sea de noche",
+              "retroalimentacion": "Los mantenimientos suelen hacerse de noche; eso no es una señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use lenguaje técnico",
+              "retroalimentacion": "El vocabulario técnico no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es phishing: es un aviso real",
+              "retroalimentacion": "Revisa el remitente con calma: empresa.co no es tu dominio, aunque se le parezca."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "PC-A3",
+            "remitente": {
+              "nombre": "Equipo de Seguridad",
+              "correo": "seguridad@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Campaña anual de verificación de cuentas",
+            "cuerpo": "Como cada año, verificamos que todas las cuentas estén activas. Confirme su cuenta en el portal antes del 30 de octubre. El proceso toma menos de un minuto.\n\n#PC-A3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "PC-A3-1",
+                "texto_indicador": "portal.empresa.com/verificar",
+                "enlace": "https://portal-empresa.com.verify-id.co/login",
+                "retroalimentacion": "El remitente se puede falsificar; el destino del enlace es lo que delata el ataque. Pasa siempre el cursor antes de hacer clic."
+              }
+            ]
+          },
+          "enunciado": "El remitente muestra seguridad@empresa.com. ¿Qué deberías revisar antes de confiar?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El destino real del enlace: lleva a verify-id.co, no a empresa.com",
+              "retroalimentacion": "¡Exacto! El remitente se puede falsificar; el destino del enlace es lo que delata el ataque. Pasa siempre el cursor antes de hacer clic."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada: si el remitente es de la empresa, es seguro",
+              "retroalimentacion": "Un remitente se puede suplantar. Revisa siempre también a dónde lleva el enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "El color del botón",
+              "retroalimentacion": "El diseño se copia fácilmente; no sirve para decidir."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que la fecha límite sea razonable",
+              "retroalimentacion": "Un plazo razonable hace creíble el mensaje, pero no prueba que sea real."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "La firma del correo",
+              "retroalimentacion": "Las firmas se copian; no son una prueba."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Cazador de phishing",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Phishing por correo.",
+        "figura": {
+          "nombre_archivo": "cazador-de-phishing.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Spear phishing",
+      "descripcion": "Es phishing dirigido a una persona concreta. El atacante investiga antes (redes sociales, página de la institución) y usa tu nombre, tu cargo o un trámite real para que el mensaje parezca escrito para ti. Qué hacer: Verifica el trámite entrando tú mismo al portal oficial o llamando a la oficina, nunca desde el enlace.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "SP-B1",
+            "remitente": {
+              "nombre": "Secretaría Académica",
+              "correo": "tramites@ulima-secretaria.org"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 08:47",
+            "asunto": "Gabriel, tu constancia de matrícula 2026-2 está observada",
+            "cuerpo": "Hola Gabriel:\n\nRevisamos tu solicitud de constancia de matrícula del ciclo 2026-2 para el curso #SP-B1-1#. Falta validar tu identidad para emitirla.\n\n#SP-B1-3# antes del viernes, #SP-B1-4#.\n\nSecretaría Académica\n\n#SP-B1-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-B1-1",
+                "texto_indicador": "Seminario de Investigación I",
+                "retroalimentacion": "Usa datos reales tuyos. Conoce tu nombre, tu ciclo y tu curso. Esos datos se consiguen en redes o páginas públicas; no prueban que el correo sea real."
+              },
+              {
+                "id_indicador": "SP-B1-2",
+                "texto_indicador": "tramites@ulima-secretaria.org",
+                "retroalimentacion": "Dominio que no es el institucional. La universidad usa ulima.edu.pe. Este correo viene de ulima-secretaria.org, un dominio registrado por cualquiera."
+              },
+              {
+                "id_indicador": "SP-B1-3",
+                "texto_indicador": "Ingresa con tu usuario y contraseña del portal en el enlace",
+                "retroalimentacion": "Pide tus credenciales. Te pide entrar con tu usuario y contraseña desde el enlace: es el robo de credenciales de siempre, pero personalizado."
+              },
+              {
+                "id_indicador": "SP-B1-4",
+                "texto_indicador": "o la solicitud se anulará",
+                "retroalimentacion": "Plazo para presionarte. «Antes del viernes o se anulará» busca que no te detengas a verificar."
+              },
+              {
+                "id_indicador": "SP-B1-enlace",
+                "texto_indicador": "Validar mi identidad",
+                "enlace": "https://ulima-secretaria.org/validar",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Por qué este correo es spear phishing y no un phishing masivo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque usa tu nombre y un trámite real para que parezca escrito solo para ti",
+              "retroalimentacion": "¡Correcto! El atacante investigó tus datos para ganarse tu confianza, pero el dominio ulima-secretaria.org no es el de la universidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque viene de la universidad",
+              "retroalimentacion": "No viene de la universidad: el dominio real es ulima.edu.pe."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque tiene un enlace",
+              "retroalimentacion": "Muchos ataques tienen enlaces; lo que lo hace spear phishing es la personalización."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque se envió a todos los alumnos",
+              "retroalimentacion": "Al contrario: está personalizado para ti, con tu nombre, tu ciclo y tu curso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque no pide nada",
+              "retroalimentacion": "Sí pide algo: que entres con tu usuario y contraseña desde el enlace."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-B2",
+            "remitente": {
+              "nombre": "Coordinación de Prácticas",
+              "correo": "practicas@ulima-empleos.com"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Gabriel: entrevista para practicante",
+            "cuerpo": "Hola Gabriel:\n\n#SP-B2-1# como estudiante de Ingeniería de Sistemas y te seleccionamos para una entrevista. Confirma enviando tu DNI escaneado y tus datos bancarios para el pago de la movilidad.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-B2-1",
+                "texto_indicador": "Vimos tu perfil de LinkedIn",
+                "retroalimentacion": "Lo que publicas (carrera, universidad, intereses) es el material del spear phishing. El propio correo lo menciona."
+              }
+            ]
+          },
+          "enunciado": "¿De dónde sacó probablemente el atacante tus datos?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "De tu perfil público en redes como LinkedIn",
+              "retroalimentacion": "¡Exacto! Lo que publicas (carrera, universidad, intereses) es el material del spear phishing. El propio correo lo menciona."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "De tu antivirus",
+              "retroalimentacion": "El antivirus no comparte tus datos; la información viene de lo que es público."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Los adivinó por casualidad",
+              "retroalimentacion": "No es casualidad: el correo cita tu carrera y tu perfil."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Se los dio la universidad",
+              "retroalimentacion": "La universidad no comparte tus datos con terceros, y el dominio no es institucional."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Del banco donde tienes tu cuenta",
+              "retroalimentacion": "El correo no tiene nada del banco: usa lo que publicaste en redes."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-B3",
+            "remitente": {
+              "nombre": "Biblioteca ULima",
+              "correo": "biblioteca@ulima-libros.net"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Gabriel, tienes 3 libros vencidos",
+            "cuerpo": "Hola Gabriel:\n\nTienes 3 libros vencidos con una multa de S/ 45. Para evitar el bloqueo de tu matrícula, paga con tarjeta en el enlace hoy.\n\n#SP-B3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-B3-1",
+                "texto_indicador": "biblioteca@ulima-libros.net",
+                "retroalimentacion": "Si la multa es real, aparecerá en el portal oficial. Así no dependes del enlace del correo."
+              },
+              {
+                "id_indicador": "SP-B3-enlace",
+                "texto_indicador": "Pagar multa",
+                "enlace": "https://ulima-libros.net/pago",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Qué debes hacer antes de pagar la multa?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Revisar tu estado en el portal oficial de la biblioteca, entrando tú mismo",
+              "retroalimentacion": "¡Correcto! Si la multa es real, aparecerá en el portal oficial. Así no dependes del enlace del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar rápido para que no bloqueen tu matrícula",
+              "retroalimentacion": "La amenaza de bloqueo es presión para que pagues sin verificar."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder preguntando el número de cuenta",
+              "retroalimentacion": "Responder al atacante solo lo ayuda a continuar el engaño."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar, porque el correo conoce tu nombre",
+              "retroalimentacion": "Conocer tu nombre no prueba nada; es justo lo que hace el spear phishing."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pedirle a un amigo que pague por ti",
+              "retroalimentacion": "El problema no es quién paga: el enlace es falso."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "SP-I1",
+            "remitente": {
+              "nombre": "Mariana Ríos - Jefa de Área",
+              "correo": "m.rios@empresa-corp.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Para la presentación de mañana con el cliente",
+            "cuerpo": "Hola Gabriel:\n\nPara la presentación de mañana con Banco Andino necesito que revises la propuesta actualizada. Está en la carpeta compartida; entra con tu cuenta de la empresa.\n\n#SP-I1-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-I1-1",
+                "texto_indicador": "m.rios@empresa-corp.com",
+                "retroalimentacion": "Los datos internos (jefa, cliente) dan credibilidad, pero el dominio externo y el pedido de inicio de sesión son la prueba."
+              },
+              {
+                "id_indicador": "SP-I1-enlace",
+                "texto_indicador": "Propuesta_BancoAndino.pdf",
+                "enlace": "https://empresa-corp.com/share/propuesta",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El correo conoce el nombre de tu jefa y el cliente real. ¿Cuál es el marcador más fuerte del ataque?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El dominio empresa-corp.com no es el de tu empresa y el enlace pide tu cuenta",
+              "retroalimentacion": "¡Correcto! Los datos internos (jefa, cliente) dan credibilidad, pero el dominio externo y el pedido de inicio de sesión son la prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione una presentación",
+              "retroalimentacion": "Las presentaciones son parte del trabajo normal; el atacante lo sabe."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use tu nombre",
+              "retroalimentacion": "Usar tu nombre hace creíble el spear phishing, pero por sí solo no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el archivo sea un PDF",
+              "retroalimentacion": "Un PDF es común; el problema es que el enlace lleva a un dominio externo que pide tu cuenta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea para mañana",
+              "retroalimentacion": "Una urgencia moderada es normal en el trabajo; no basta para decidir."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-I2",
+            "remitente": {
+              "nombre": "Daniel Paredes",
+              "correo": "daniel.paredes.ti@outlook.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Hola Gabriel, soy Daniel de TI (nos vimos en la inducción)",
+            "cuerpo": "Hola Gabriel:\n\nSoy Daniel, el de TI que te ayudó en la inducción. Estamos migrando las cuentas de los nuevos y la tuya dio error. #SP-I2-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-I2-1",
+                "texto_indicador": "¿Me pasas el código de verificación que te llegará por SMS en un momento?",
+                "retroalimentacion": "Con tu contraseña y ese código, el atacante salta la verificación en dos pasos. Nadie de TI necesita tu código."
+              }
+            ]
+          },
+          "enunciado": "¿Qué pide realmente este mensaje?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Tu código de verificación por SMS, para entrar a tu cuenta aunque tenga doble factor",
+              "retroalimentacion": "¡Exacto! Con tu contraseña y ese código, el atacante salta la verificación en dos pasos. Nadie de TI necesita tu código."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo una confirmación de que recibiste el correo",
+              "retroalimentacion": "Pide algo mucho más grave: el código que protege tu cuenta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Tu opinión sobre la inducción",
+              "retroalimentacion": "Mencionar la inducción solo sirve para generar confianza."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que actualices tu foto de perfil",
+              "retroalimentacion": "No habla de la foto; pide el código SMS."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que reinicies tu computadora",
+              "retroalimentacion": "No lo pide; el objetivo es el código de verificación."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-I3",
+            "remitente": {
+              "nombre": "Comité Organizador CONEIS",
+              "correo": "inscripciones@coneis-2026.org"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Gabriel, aceptamos tu ponencia",
+            "cuerpo": "Felicitaciones, Gabriel:\n\n#SP-I3-1#. Para confirmar tu participación, paga hoy la inscripción de S/ 120 en el enlace.\n\n#SP-I3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-I3-1",
+                "texto_indicador": "Tu ponencia «Entrenamiento anti-phishing con gamificación» fue aceptada",
+                "retroalimentacion": "Toma datos reales (tu tema de tesis) para crear un premio falso. Si no enviaste nada, no hay nada que aceptar."
+              },
+              {
+                "id_indicador": "SP-I3-enlace",
+                "texto_indicador": "Confirmar ponencia",
+                "enlace": "https://coneis-2026.org/pago",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "Nunca enviaste ninguna ponencia. ¿Qué indica esto?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que el atacante usó tu tema de investigación, que es público, para engañarte y cobrarte",
+              "retroalimentacion": "¡Correcto! Toma datos reales (tu tema de tesis) para crear un premio falso. Si no enviaste nada, no hay nada que aceptar."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que alguien envió la ponencia por ti y debes pagar",
+              "retroalimentacion": "Si no enviaste nada, lo prudente es desconfiar y verificar en el sitio oficial del evento."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que es un error inocente del congreso",
+              "retroalimentacion": "Pedir un pago urgente por algo que no hiciste no es un error inocente."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que debes pagar para no perder la oportunidad",
+              "retroalimentacion": "Esa sensación de oportunidad única es la presión que usa el atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que es seguro porque conoce el título exacto",
+              "retroalimentacion": "Conocer el título es justo la personalización del spear phishing."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "SP-A1",
+            "remitente": {
+              "nombre": "Mariana Ríos",
+              "correo": "mariana.rios@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "¿Me ayudas con algo rápido?",
+            "cuerpo": "Hola Gabriel:\n\n¿Me envías la lista de clientes del proyecto Andino a mi correo personal #SP-A1-1#? Estoy de viaje y no tengo VPN. Gracias.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-A1-1",
+                "texto_indicador": "mariana.rios.p@gmail.com",
+                "retroalimentacion": "Aunque el remitente parezca legítimo, la cuenta pudo ser suplantada o comprometida. Enviar datos de clientes a un Gmail es justo lo que busca el atacante."
+              }
+            ]
+          },
+          "enunciado": "El remitente parece ser tu jefa real. ¿Qué es lo correcto?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Confirmar con ella por teléfono o Teams antes de enviar datos a un correo personal",
+              "retroalimentacion": "¡Correcto! Aunque el remitente parezca legítimo, la cuenta pudo ser suplantada o comprometida. Enviar datos de clientes a un Gmail es justo lo que busca el atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviarla, porque el correo viene de empresa.com",
+              "retroalimentacion": "El remitente puede falsificarse o la cuenta estar comprometida. La señal es el pedido: datos a un correo personal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviarla en un archivo comprimido con contraseña",
+              "retroalimentacion": "Protegerla no resuelve el problema: igual la entregarías a un destinatario no verificado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder al mismo correo preguntando si es ella",
+              "retroalimentacion": "Si la cuenta fue comprometida, el atacante te responderá que sí. Verifica por otro canal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviar solo una parte de la lista",
+              "retroalimentacion": "Cualquier parte de la información de clientes ya es una fuga de datos."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-A2",
+            "remitente": {
+              "nombre": "Rectorado",
+              "correo": "rectorado@ulima.edu.pe.mail-secure.co"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Gabriel Crisostomo: beca de excelencia 2027",
+            "cuerpo": "Estimado Gabriel Crisostomo, código 20204307:\n\nPor su promedio ponderado ha sido preseleccionado para la beca de excelencia 2027. Complete la ficha socioeconómica con su usuario del portal.\n\n#SP-A2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-A2-1",
+                "texto_indicador": "rectorado@ulima.edu.pe.mail-secure.co",
+                "retroalimentacion": "El dominio real es lo que va al final (mail-secure.co). Que conozca tu código no prueba nada: es un dato fácil de conseguir."
+              },
+              {
+                "id_indicador": "SP-A2-enlace",
+                "texto_indicador": "Ficha de beca",
+                "enlace": "https://ulima.edu.pe.mail-secure.co/beca",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "Conoce tu nombre completo y tu código de alumno, y el remitente empieza con ulima.edu.pe. ¿Es confiable?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No: el dominio real es mail-secure.co; «ulima.edu.pe» es solo un subdominio de adorno",
+              "retroalimentacion": "¡Exacto! El dominio real es lo que va al final (mail-secure.co). Que conozca tu código no prueba nada: es un dato fácil de conseguir."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque empieza con ulima.edu.pe",
+              "retroalimentacion": "El inicio del dominio no manda: lo que cuenta es la parte final."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque conoce tu código de alumno",
+              "retroalimentacion": "Tu código aparece en listas y documentos; es justo el tipo de dato que usa el spear phishing."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque las becas existen",
+              "retroalimentacion": "Las becas existen; el atacante aprovecha eso como anzuelo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo si el enlace tiene candado (https)",
+              "retroalimentacion": "El candado solo indica conexión cifrada; las páginas falsas también lo tienen."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "SP-A3",
+            "remitente": {
+              "nombre": "Dr. Ricardo Vega - Asesor",
+              "correo": "r.vega.asesor@protonmail.com"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Comentarios a tu capítulo 3",
+            "cuerpo": "Gabriel:\n\nRevisé tu capítulo 3 y dejé comentarios. #SP-A3-1#, te lo comparto por aquí. Ábrelo con tu cuenta de Microsoft para ver los cambios.\n\n#SP-A3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "SP-A3-1",
+                "texto_indicador": "Como el sistema de la universidad está caído",
+                "retroalimentacion": "En el nivel avanzado las señales vienen juntas: cada una sola puede parecer normal, pero combinadas revelan el ataque."
+              },
+              {
+                "id_indicador": "SP-A3-enlace",
+                "texto_indicador": "Capitulo3_comentarios.docx",
+                "enlace": "https://onedrive-share.live-docs.net/cap3",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El mensaje encaja con lo que estás haciendo esta semana. ¿Qué combinación de señales lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Cuenta personal en vez de la institucional, la excusa del «sistema caído» y un enlace que imita a OneDrive",
+              "retroalimentacion": "¡Correcto! En el nivel avanzado las señales vienen juntas: cada una sola puede parecer normal, pero combinadas revelan el ataque."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que hable de comentarios a tu capítulo",
+              "retroalimentacion": "Es el contexto real que el atacante aprovechó; no es la señal por sí mismo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el archivo sea .docx",
+              "retroalimentacion": "Un .docx es común; el problema es el enlace externo que pide tu cuenta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el asesor escriba en tono informal",
+              "retroalimentacion": "El tono informal es normal entre asesor y estudiante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguna: es un correo normal del asesor",
+              "retroalimentacion": "Revisa la cuenta, la excusa y el dominio del enlace: juntas muestran el engaño."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Escudo anti-spear",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Spear phishing.",
+        "figura": {
+          "nombre_archivo": "escudo-anti-spear.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Business Email Compromise (BEC)",
+      "descripcion": "El atacante se hace pasar por un jefe, un gerente o un proveedor para pedir un pago, una transferencia o un cambio de cuenta bancaria. Casi nunca trae enlaces ni adjuntos: el engaño está en la autoridad y en la urgencia. Qué hacer: Confirma cualquier pedido de pago por otro canal (teléfono conocido o en persona) y sigue el procedimiento de pagos.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "BEC-B1",
+            "remitente": {
+              "nombre": "Carlos Méndez - Gerente General",
+              "correo": "carlos.mendez.gerencia@gmail.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:15",
+            "asunto": "Pago urgente y confidencial",
+            "cuerpo": "Hola, #BEC-B1-2# al proveedor nuevo. Es una compra confidencial, así que #BEC-B1-3# hasta que yo lo anuncie.\n\nEstoy en reunión todo el día y #BEC-B1-4#, respóndeme solo por aquí cuando esté hecho.\n\nCarlos",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-B1-1",
+                "texto_indicador": "carlos.mendez.gerencia@gmail.com",
+                "retroalimentacion": "Correo personal, no corporativo. El gerente escribiría desde empresa.com. Este mensaje viene de una cuenta de Gmail que cualquiera puede crear."
+              },
+              {
+                "id_indicador": "BEC-B1-2",
+                "texto_indicador": "necesito que hagas hoy una transferencia de S/ 18,500",
+                "retroalimentacion": "Pide dinero con urgencia. Una transferencia grande «hoy» es el objetivo típico del BEC."
+              },
+              {
+                "id_indicador": "BEC-B1-3",
+                "texto_indicador": "no lo comentes con nadie del área",
+                "retroalimentacion": "Pide secreto. Que no lo comentes con nadie sirve para que nadie verifique la orden y descubra el fraude."
+              },
+              {
+                "id_indicador": "BEC-B1-4",
+                "texto_indicador": "no puedo contestar llamadas",
+                "retroalimentacion": "Evita que verifiques. Dice que no puede contestar llamadas. Así bloquea justo la forma de confirmar que es él."
+              }
+            ]
+          },
+          "enunciado": "¿Qué deberías hacer ante este pedido?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Confirmar el pedido con el gerente por otro canal, como su teléfono conocido, antes de transferir",
+              "retroalimentacion": "¡Correcto! Es un BEC: correo personal, urgencia, secreto y bloqueo de llamadas. Verificar por otro canal desarma el engaño."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacer la transferencia porque lo pide el gerente",
+              "retroalimentacion": "Eso es justo lo que busca el atacante; el correo ni siquiera es corporativo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder al mismo correo para confirmar",
+              "retroalimentacion": "Le escribirías al atacante, que te dirá que todo está bien."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Guardar el secreto como pide el mensaje",
+              "retroalimentacion": "El secreto sirve para que nadie descubra el fraude; debes consultarlo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Transferir solo una parte del monto",
+              "retroalimentacion": "Cualquier monto es una pérdida; primero hay que verificar."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-B2",
+            "remitente": {
+              "nombre": "Comercial Andina - Pagos",
+              "correo": "pagos.comercialandina@hotmail.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Cambio de cuenta bancaria",
+            "cuerpo": "Buenos días:\n\nLes informamos que cambiamos de banco. A partir de hoy depositen nuestras facturas en la nueva cuenta BCP 191-55555555-0-01. Por favor actualícenla antes del próximo pago.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-B2-1",
+                "texto_indicador": "pagos.comercialandina@hotmail.com",
+                "retroalimentacion": "Un cambio de cuenta bancaria siempre se confirma por un canal conocido. Es la forma más común de BEC con proveedores."
+              }
+            ]
+          },
+          "enunciado": "¿Qué es lo correcto ante este pedido?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Llamar al proveedor a su número registrado para confirmar el cambio antes de tocar nada",
+              "retroalimentacion": "¡Correcto! Un cambio de cuenta bancaria siempre se confirma por un canal conocido. Es la forma más común de BEC con proveedores."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Actualizar la cuenta, porque el proveedor es conocido",
+              "retroalimentacion": "El proveedor es conocido, pero la cuenta de Hotmail no. El atacante cuenta con que no verifiques."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder al correo pidiendo una constancia",
+              "retroalimentacion": "El atacante te enviará una constancia falsa. Verifica por otro canal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Depositar el próximo pago en las dos cuentas",
+              "retroalimentacion": "Depositar en la cuenta nueva es entregarle el dinero al atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a Contabilidad para que la actualice",
+              "retroalimentacion": "Pasarlo sin verificar solo traslada el riesgo a otra persona."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-B3",
+            "remitente": {
+              "nombre": "Directora de Finanzas",
+              "correo": "directora.finanzas@empresa-pagos.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Pago de factura hoy",
+            "cuerpo": "Estoy en un vuelo y necesito que hoy se pague esta factura de S/ 9,800 a la cuenta que te paso. #BEC-B3-1#; confírmame solo por correo cuando esté hecho.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-B3-1",
+                "texto_indicador": "No puedo atender llamadas",
+                "retroalimentacion": "Bloquear la verificación es una de las señales más claras del BEC."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué el mensaje dice que no puede atender llamadas?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Para que no puedas verificar la orden por teléfono",
+              "retroalimentacion": "¡Exacto! Bloquear la verificación es una de las señales más claras del BEC."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque de verdad está en un vuelo",
+              "retroalimentacion": "Puede ser una excusa inventada; justamente por eso hay que verificar por otro canal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Para que el pago sea más rápido",
+              "retroalimentacion": "La rapidez ayuda al atacante, pero el motivo de fondo es que no verifiques."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque prefiere escribir por correo",
+              "retroalimentacion": "No es una preferencia: es una forma de controlar la comunicación."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Por la seguridad de la empresa",
+              "retroalimentacion": "Una orden de pago que no se puede confirmar no es más segura, es más riesgosa."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "BEC-I1",
+            "remitente": {
+              "nombre": "Carlos Méndez",
+              "correo": "carlos.mendez@ernpresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "¿Estás en la oficina?",
+            "cuerpo": "Hola, ¿estás en la oficina? Necesito que me ayudes con un pago a un proveedor antes de las 12. Te envío los datos en cuanto me confirmes.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-I1-1",
+                "texto_indicador": "carlos.mendez@ernpresa.com",
+                "retroalimentacion": "«rn» junto se parece a «m». Además, el mensaje corto que solo pregunta si estás es la primera fase del BEC: luego viene el pedido."
+              }
+            ]
+          },
+          "enunciado": "El correo todavía no pide nada, solo pregunta si estás. ¿Qué detalle lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El dominio ernpresa.com usa «rn» en lugar de «m»",
+              "retroalimentacion": "¡Correcto! «rn» junto se parece a «m». Además, el mensaje corto que solo pregunta si estás es la primera fase del BEC: luego viene el pedido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que pregunte si estás en la oficina",
+              "retroalimentacion": "Es una pregunta normal; el atacante la usa para iniciar la conversación."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione a un proveedor",
+              "retroalimentacion": "Los pagos a proveedores son habituales; la prueba está en el dominio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea un mensaje corto",
+              "retroalimentacion": "Los mensajes cortos son comunes entre colegas."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: es un correo de Carlos",
+              "retroalimentacion": "Lee el dominio letra por letra: ernpresa.com no es empresa.com."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-I2",
+            "remitente": {
+              "nombre": "Dr. Jorge Paredes - Estudio Paredes",
+              "correo": "jparedes@estudio-paredes-abogados.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Adquisición confidencial",
+            "cuerpo": "#BEC-I2-1#, coordinamos una adquisición confidencial. Debemos depositar hoy el adelanto de USD 25,000. El gerente me pidió que te contacte directamente; por confidencialidad, no lo comentes.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-I2-1",
+                "texto_indicador": "Por encargo del gerente general",
+                "retroalimentacion": "En este tipo de BEC el atacante se hace pasar por un abogado o asesor para que la orden parezca venir de arriba."
+              }
+            ]
+          },
+          "enunciado": "¿Qué técnica usa este mensaje para ganarse tu confianza?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Usa a un tercero con autoridad (un abogado) que dice actuar por encargo del gerente",
+              "retroalimentacion": "¡Exacto! En este tipo de BEC el atacante se hace pasar por un abogado o asesor para que la orden parezca venir de arriba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Te ofrece un premio",
+              "retroalimentacion": "No ofrece nada; te presiona con autoridad y secreto."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa un código QR",
+              "retroalimentacion": "No hay QR; el engaño es la autoridad del supuesto abogado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Te amenaza con despedirte",
+              "retroalimentacion": "No hay amenaza directa; la presión viene de la autoridad y la confidencialidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa faltas de ortografía para parecer real",
+              "retroalimentacion": "Está bien escrito; las faltas no son la señal."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-I3",
+            "remitente": {
+              "nombre": "Rosa Quispe - TecnoPerú",
+              "correo": "rosa.quispe@tecnoperu.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Factura de octubre",
+            "cuerpo": "Hola:\n\nAdjunto la factura de octubre. Este mes, por una auditoría interna, el pago debe hacerse #BEC-I3-1# que figura en la factura.",
+            "adjunto": {
+              "nombre_archivo": "Factura_Octubre_TecnoPeru.pdf"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "BEC-I3-1",
+                "texto_indicador": "a la cuenta de nuestra filial en Panamá",
+                "retroalimentacion": "La cuenta del proveedor pudo ser comprometida. Un cambio de cuenta, y más a otro país, siempre se verifica fuera del correo."
+              }
+            ]
+          },
+          "enunciado": "El proveedor es real y el correo parece venir de su dominio. ¿Qué debes hacer?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Confirmar el cambio llamando al teléfono registrado del proveedor: una cuenta en otro país es una alerta",
+              "retroalimentacion": "¡Correcto! La cuenta del proveedor pudo ser comprometida. Un cambio de cuenta, y más a otro país, siempre se verifica fuera del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar, porque el dominio es el del proveedor",
+              "retroalimentacion": "Si su cuenta fue comprometida, el correo saldrá de su dominio real. Lo sospechoso es el pedido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar la mitad en cada cuenta",
+              "retroalimentacion": "Cualquier depósito a la cuenta nueva sin verificar puede perderse."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pedir por correo que confirmen la cuenta",
+              "retroalimentacion": "Si el atacante controla ese correo, confirmará la cuenta falsa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrir la factura y pagar si se ve bien",
+              "retroalimentacion": "Una factura se falsifica fácilmente; no prueba que el cambio sea real."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "BEC-A1",
+            "remitente": {
+              "nombre": "Carlos Méndez - Gerente General",
+              "correo": "carlos.mendez@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Proveedor de equipos",
+            "cuerpo": "Siguiendo con el correo de ayer sobre el proveedor de equipos: ya aprobé el pago. Por favor procésalo hoy #BEC-A1-1# que te envía Logística. Gracias.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-A1-1",
+                "texto_indicador": "con los nuevos datos bancarios",
+                "retroalimentacion": "En el BEC avanzado el atacante usa una cuenta comprometida y se mete en conversaciones reales. La regla no cambia: los cambios bancarios se confirman fuera del correo."
+              }
+            ]
+          },
+          "enunciado": "El correo viene del dominio correcto y continúa una conversación real. ¿Qué te debería hacer dudar?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que pida un pago con datos bancarios nuevos: eso se verifica por otro canal aunque el correo parezca real",
+              "retroalimentacion": "¡Exacto! En el BEC avanzado el atacante usa una cuenta comprometida y se mete en conversaciones reales. La regla no cambia: los cambios bancarios se confirman fuera del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada: el dominio es correcto",
+              "retroalimentacion": "Una cuenta real puede estar comprometida; el dominio correcto no basta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea muy corto",
+              "retroalimentacion": "Muchos jefes escriben corto; no es la señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga «gracias»",
+              "retroalimentacion": "La cortesía no indica nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione a Logística",
+              "retroalimentacion": "Mencionar otra área le da credibilidad, pero la clave es el cambio de datos bancarios."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-A2",
+            "remitente": {
+              "nombre": "Sofía Linares - Recursos Humanos",
+              "correo": "sofia.linares@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Cambio de cuenta de sueldo",
+            "cuerpo": "Hola:\n\nEl colaborador Luis Ramos nos pidió cambiar la cuenta donde recibe su sueldo. Adjunto su solicitud. ¿Puedes actualizarla #BEC-A2-1#?",
+            "adjunto": {
+              "nombre_archivo": "Solicitud_cambio_cuenta_LRamos.pdf"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "BEC-A2-1",
+                "texto_indicador": "antes del cierre de planilla de hoy",
+                "retroalimentacion": "El fraude de planilla es una variante del BEC: el atacante desvía el sueldo de alguien. Solo el propio colaborador puede confirmar el cambio."
+              }
+            ]
+          },
+          "enunciado": "Es un cambio de cuenta de sueldo pedido por Recursos Humanos. ¿Qué paso no te puedes saltar?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Confirmar directamente con Luis Ramos, por un canal conocido, que él pidió el cambio",
+              "retroalimentacion": "¡Correcto! El fraude de planilla es una variante del BEC: el atacante desvía el sueldo de alguien. Solo el propio colaborador puede confirmar el cambio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Actualizarla, porque viene de Recursos Humanos",
+              "retroalimentacion": "La cuenta de Recursos Humanos pudo ser suplantada o comprometida."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Revisar que el PDF tenga firma",
+              "retroalimentacion": "Una firma escaneada se copia fácilmente."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacerlo después del cierre para tener más tiempo",
+              "retroalimentacion": "El problema no es el tiempo, sino que no se verificó con el colaborador."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pedirle a Recursos Humanos que reenvíe el correo",
+              "retroalimentacion": "Reenviar el mismo correo no agrega ninguna verificación."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "BEC-A3",
+            "remitente": {
+              "nombre": "Carlos Méndez",
+              "correo": "carlos.mendez@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 23:47",
+            "asunto": "Transferencia mañana temprano",
+            "cuerpo": "Disculpa la hora. Estoy cerrando el acuerdo con el cliente en Chile y necesito que mañana a primera hora hagas la transferencia de USD 48,000. Te mando la cuenta en un rato. #BEC-A3-1#.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "BEC-A3-1",
+                "texto_indicador": "Esto queda entre nosotros hasta la firma",
+                "retroalimentacion": "Cada detalle por separado podría ser normal; juntos forman el patrón clásico del BEC. Lo correcto es verificar por teléfono antes de cualquier pago."
+              }
+            ]
+          },
+          "enunciado": "¿Qué conjunto de marcadores convierte este correo en un posible BEC?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Monto alto, urgencia, pedido de secreto y una cuenta que llegará por separado",
+              "retroalimentacion": "¡Correcto! Cada detalle por separado podría ser normal; juntos forman el patrón clásico del BEC. Lo correcto es verificar por teléfono antes de cualquier pago."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo la hora en que se envió",
+              "retroalimentacion": "La hora tardía suma, pero por sí sola no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione un cliente en Chile",
+              "retroalimentacion": "Los negocios internacionales son normales; lo que delata el ataque es el patrón completo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el gerente pida disculpas",
+              "retroalimentacion": "La cortesía no es una señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: el remitente es el gerente",
+              "retroalimentacion": "El remitente puede estar comprometido; lo importante es el patrón del pedido."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Guardián de pagos",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Business Email Compromise (BEC).",
+        "figura": {
+          "nombre_archivo": "guardian-de-pagos.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Clone phishing",
+      "descripcion": "El atacante copia un correo legítimo que ya recibiste (una invitación, una factura, un documento compartido) y lo reenvía casi igual, pero cambia el enlace o el adjunto por uno malicioso. Como ya conoces el mensaje, bajas la guardia. Qué hacer: Compara con el correo original y entra a la reunión desde tu calendario o la aplicación oficial.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "CL-B1",
+            "remitente": {
+              "nombre": "Microsoft Teams",
+              "correo": "no-reply@teams-microsoft.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 07:58",
+            "asunto": "RE: Reunión Proyecto Alpha (enlace actualizado)",
+            "cuerpo": "Hola:\n\n#CL-B1-1# de mañana a las 10:00. #CL-B1-2#, por favor usa este nuevo enlace e inicia sesión con tu cuenta corporativa para unirte.\n\nSaludos,\nEquipo Alpha\n\n#CL-B1-4#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-B1-1",
+                "texto_indicador": "Te reenvío la invitación a la reunión del Proyecto Alpha",
+                "retroalimentacion": "Copia de un mensaje que ya conoces. La reunión del Proyecto Alpha es real y ya te habían invitado. El atacante reutiliza ese contexto."
+              },
+              {
+                "id_indicador": "CL-B1-2",
+                "texto_indicador": "El enlace anterior presentó errores",
+                "retroalimentacion": "Excusa para cambiar el enlace. «El enlace anterior presentó errores» es la excusa típica para meter un enlace nuevo y malicioso."
+              },
+              {
+                "id_indicador": "CL-B1-3",
+                "texto_indicador": "no-reply@teams-microsoft.net",
+                "retroalimentacion": "Dominio parecido al original. Teams usa teams.microsoft.com. Este remitente usa teams-microsoft.net, que solo se parece."
+              },
+              {
+                "id_indicador": "CL-B1-4",
+                "texto_indicador": "Unirse a la reunión",
+                "enlace": "https://teams-microsoft.net/join/alpha",
+                "retroalimentacion": "El nuevo enlace pide iniciar sesión. El destino real es teams-microsoft.net y te pide tu cuenta: quiere tus credenciales."
+              }
+            ]
+          },
+          "enunciado": "¿Qué hace que este correo sea clone phishing?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Copia una invitación real que ya recibiste, pero cambia el enlace por uno malicioso",
+              "retroalimentacion": "¡Correcto! Reutiliza la reunión del Proyecto Alpha y usa la excusa del «enlace actualizado» para llevarte a teams-microsoft.net."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que viene de Microsoft Teams",
+              "retroalimentacion": "No viene de Microsoft: teams-microsoft.net no es teams.microsoft.com."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que tiene un archivo adjunto",
+              "retroalimentacion": "No trae adjunto; lo que cambió es el enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que usa tu nombre",
+              "retroalimentacion": "No usa tu nombre; lo central es que copia un mensaje que ya conoces."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que pide una transferencia",
+              "retroalimentacion": "No pide dinero, pide que inicies sesión en un enlace falso."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-B2",
+            "remitente": {
+              "nombre": "DHL Express",
+              "correo": "notificaciones@dhl-tracking.info"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Su envío 4471 (corrección de dirección)",
+            "cuerpo": "Le reenviamos la notificación de su envío 4471 con una corrección. Descargue la nueva guía de entrega para confirmar su dirección.",
+            "adjunto": {
+              "nombre_archivo": "Guia_DHL_4471.zip"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "CL-B2-1",
+                "texto_indicador": "Guia_DHL_4471.zip",
+                "retroalimentacion": "El clon cambia justo lo peligroso: el adjunto (un .zip puede esconder un programa) y el dominio."
+              }
+            ]
+          },
+          "enunciado": "Ayer recibiste el aviso real de DHL. ¿Qué cambió en esta copia?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Ahora trae un archivo .zip y viene de dhl-tracking.info, no de dhl.com",
+              "retroalimentacion": "¡Exacto! El clon cambia justo lo peligroso: el adjunto (un .zip puede esconder un programa) y el dominio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada, es el mismo correo",
+              "retroalimentacion": "Compara el remitente y el adjunto con el original: cambiaron."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo cambió el número de envío",
+              "retroalimentacion": "El número es el mismo; lo que cambia es el adjunto y el dominio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que ahora está en español",
+              "retroalimentacion": "El idioma no es lo importante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que llegó más tarde",
+              "retroalimentacion": "La hora no es la señal."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-B3",
+            "remitente": {
+              "nombre": "Recursos Humanos",
+              "correo": "rrhh@empresa-portal.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Boleta de pago de octubre",
+            "cuerpo": "#CL-B3-1#, te reenviamos tu boleta de octubre. Para verla, inicia sesión en el portal con tu usuario y contraseña.\n\n#CL-B3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-B3-1",
+                "texto_indicador": "Por un error en el envío anterior",
+                "retroalimentacion": "Si la boleta es real, estará en el portal oficial. Así evitas la copia con el enlace cambiado."
+              },
+              {
+                "id_indicador": "CL-B3-enlace",
+                "texto_indicador": "Ver boleta",
+                "enlace": "https://empresa-portal.com/boleta",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Cuál es la mejor forma de ver tu boleta sin riesgo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Entrar al portal oficial de la empresa escribiendo tú la dirección, sin usar el enlace del correo",
+              "retroalimentacion": "¡Correcto! Si la boleta es real, estará en el portal oficial. Así evitas la copia con el enlace cambiado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usar el enlace, porque ya recibiste ese correo antes",
+              "retroalimentacion": "Justamente por eso funciona el clone phishing: confías porque ya lo viste."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder pidiendo la boleta en PDF",
+              "retroalimentacion": "Le estarías escribiendo al atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrir el enlace desde el celular",
+              "retroalimentacion": "Cambiar de dispositivo no hace seguro un enlace falso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a Recursos Humanos y usar el enlace mientras responden",
+              "retroalimentacion": "Reportarlo está bien, pero usar el enlace mientras tanto te expone."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "CL-I1",
+            "remitente": {
+              "nombre": "Equipo Proyecto Alpha",
+              "correo": "equipo.alpha@empresa-com.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Acta de la reunión del lunes (versión corregida)",
+            "cuerpo": "Hola equipo:\n\nAdjunto la versión corregida del acta del lunes; la anterior tenía un error en los acuerdos. Para abrirla, habilita la edición y el contenido.",
+            "adjunto": {
+              "nombre_archivo": "Acta_reunion_corregida.docm"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "CL-I1-1",
+                "texto_indicador": "Acta_reunion_corregida.docm",
+                "retroalimentacion": "El acta original era un .docx enviado desde empresa.com. El clon cambia la extensión por una con macros y usa un dominio parecido."
+              }
+            ]
+          },
+          "enunciado": "¿Qué dos detalles muestran que es un clon malicioso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El adjunto .docm (con macros) y el dominio empresa-com.net, que imita a empresa.com",
+              "retroalimentacion": "¡Correcto! El acta original era un .docx enviado desde empresa.com. El clon cambia la extensión por una con macros y usa un dominio parecido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga «versión corregida»",
+              "retroalimentacion": "Las correcciones son normales; es la excusa, no la prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que se envíe a todo el equipo",
+              "retroalimentacion": "Enviar el acta al equipo es lo esperado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione la reunión del lunes",
+              "retroalimentacion": "La reunión fue real; el atacante usa ese contexto."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el asunto empiece con RE:",
+              "retroalimentacion": "«RE:» se agrega fácilmente; por sí solo no prueba nada."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-I2",
+            "remitente": {
+              "nombre": "Mercado Libre",
+              "correo": "avisos@mercadolibre.pe-compras.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Tu compra fue confirmada (reenvío)",
+            "cuerpo": "Te reenviamos la confirmación de tu compra «Audífonos Bluetooth». Si no reconoces la compra, cancélala desde este enlace iniciando sesión.\n\n#CL-I2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-I2-1",
+                "texto_indicador": "avisos@mercadolibre.pe-compras.com",
+                "retroalimentacion": "El clon usa una compra real para darte confianza. La prueba está en el dominio, que no es el de la tienda."
+              },
+              {
+                "id_indicador": "CL-I2-enlace",
+                "texto_indicador": "Cancelar compra",
+                "enlace": "https://mercadolibre.pe-compras.com/cancelar",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "Sí compraste unos audífonos hace poco. ¿Por qué igual debes desconfiar?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque el dominio real es pe-compras.com y te invita a iniciar sesión desde el enlace",
+              "retroalimentacion": "¡Exacto! El clon usa una compra real para darte confianza. La prueba está en el dominio, que no es el de la tienda."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No hay que desconfiar: la compra es real",
+              "retroalimentacion": "Que la compra sea real es lo que el atacante aprovecha; revisa el dominio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los audífonos no existen",
+              "retroalimentacion": "El producto sí existe; el problema es el enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque las tiendas nunca envían confirmaciones",
+              "retroalimentacion": "Sí las envían; por eso el clon es creíble."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el asunto dice «reenvío»",
+              "retroalimentacion": "La palabra «reenvío» no basta; la prueba es el dominio."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-I3",
+            "remitente": {
+              "nombre": "OneDrive",
+              "correo": "onedrive@sharepoint-docs.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Te compartieron «Presupuesto_2027.xlsx» (actualizado)",
+            "cuerpo": "Se actualizó el archivo que te compartieron la semana pasada. Ábrelo con tu cuenta de Microsoft para ver los cambios.\n\n#CL-I3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-I3-1",
+                "texto_indicador": "Abrir en OneDrive",
+                "enlace": "https://sharepoint-docs.com/login",
+                "retroalimentacion": "Si el archivo cambió, lo verás en OneDrive. No necesitas el enlace del correo."
+              }
+            ]
+          },
+          "enunciado": "¿Qué deberías hacer para comprobar si el archivo realmente se actualizó?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Abrir OneDrive desde tu navegador o la aplicación oficial y buscar el archivo ahí",
+              "retroalimentacion": "¡Correcto! Si el archivo cambió, lo verás en OneDrive. No necesitas el enlace del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacer clic en el enlace y ver si la página se parece a OneDrive",
+              "retroalimentacion": "Las páginas falsas copian el diseño exacto; verse igual no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder preguntando qué cambió",
+              "retroalimentacion": "Le escribirías al atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Descargarlo sin iniciar sesión",
+              "retroalimentacion": "Igual estarías usando el enlace del clon."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Confiar, porque te compartieron ese archivo la semana pasada",
+              "retroalimentacion": "Ese recuerdo real es justo lo que usa el clone phishing."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "CL-A1",
+            "remitente": {
+              "nombre": "Microsoft Teams",
+              "correo": "noreply@teams.microsoft.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: Reunión de directorio - jueves 10:00",
+            "cuerpo": "Se actualizó la reunión «Reunión de directorio».\n\nJueves, 10:00 - 11:00\nOrganizador: Gerencia General\n\nÚnase desde su computadora o desde la aplicación móvil.\n\n#CL-A1-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-A1-1",
+                "texto_indicador": "Unirse a la reunión de Microsoft Teams",
+                "enlace": "https://teams.microsoft.com.meeting-join.app/l/meetup",
+                "retroalimentacion": "En un clon avanzado todo es igual salvo el destino del enlace. Lee el dominio hasta el final: lo que manda es meeting-join.app."
+              }
+            ]
+          },
+          "enunciado": "El remitente y el texto son idénticos al original. ¿Dónde está la diferencia?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "En el destino del enlace: termina en meeting-join.app, no en microsoft.com",
+              "retroalimentacion": "¡Exacto! En un clon avanzado todo es igual salvo el destino del enlace. Lee el dominio hasta el final: lo que manda es meeting-join.app."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No hay diferencia: es seguro",
+              "retroalimentacion": "Pasa el cursor sobre el enlace: el destino real no es de Microsoft."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "En la hora de la reunión",
+              "retroalimentacion": "La hora es la misma del original."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "En que el asunto empieza con RE:",
+              "retroalimentacion": "«RE:» no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "En el logo de Teams",
+              "retroalimentacion": "El logo se copia fácilmente; no sirve para decidir."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-A2",
+            "remitente": {
+              "nombre": "Claro - Facturación",
+              "correo": "facturacion@claro.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su recibo de octubre (nota de crédito por cobro duplicado)",
+            "cuerpo": "Estimado cliente:\n\nDetectamos un cobro duplicado en su recibo de octubre. Descargue la nota de crédito adjunta para ver la devolución.",
+            "adjunto": {
+              "nombre_archivo": "NotaCredito_Octubre.pdf.html"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "CL-A2-1",
+                "texto_indicador": "NotaCredito_Octubre.pdf.html",
+                "retroalimentacion": "«.pdf.html» es una doble extensión y lo que cuenta es la última (.html). Ese archivo abre una página para robar tus datos."
+              }
+            ]
+          },
+          "enunciado": "El correo copia el formato de tu recibo mensual. ¿Qué detalle es el más peligroso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El adjunto termina en .html: al abrirlo carga una página falsa, aunque parezca un PDF",
+              "retroalimentacion": "¡Correcto! «.pdf.html» es una doble extensión y lo que cuenta es la última (.html). Ese archivo abre una página para robar tus datos."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que hable de un cobro duplicado",
+              "retroalimentacion": "Es la excusa; el peligro real está en el archivo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que tenga el formato de Claro",
+              "retroalimentacion": "El formato se copia; no es lo más importante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que ofrezca una devolución",
+              "retroalimentacion": "La devolución es el anzuelo; lo peligroso es el adjunto."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que llegue a fin de mes",
+              "retroalimentacion": "Los recibos llegan en fechas fijas; el atacante lo aprovecha."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "CL-A3",
+            "remitente": {
+              "nombre": "Equipo Proyecto Alpha",
+              "correo": "equipo.alpha@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "RE: RE: Cronograma final",
+            "cuerpo": "Hola a todos, como acordamos, comparto el cronograma final. Gabriel, por favor revísalo hoy porque cambiamos tu fecha de entrega.\n\n--- Mensaje original ---\nDe: Equipo Proyecto Alpha\nAsunto: Cronograma final\n\n#CL-A3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "CL-A3-1",
+                "texto_indicador": "Cronograma_final.xlsx (OneDrive)",
+                "enlace": "https://1drv-share.net/cronograma",
+                "retroalimentacion": "Cuando una cuenta del equipo es comprometida, el atacante responde dentro de hilos reales. El enlace a 1drv-share.net lo delata."
+              }
+            ]
+          },
+          "enunciado": "El correo responde a un hilo real, menciona tu nombre y viene del equipo. ¿Qué haces?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Verificar con el equipo por Teams o en persona y abrir el cronograma desde la carpeta compartida oficial",
+              "retroalimentacion": "¡Correcto! Cuando una cuenta del equipo es comprometida, el atacante responde dentro de hilos reales. El enlace a 1drv-share.net lo delata."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirlo, porque es parte de un hilo real",
+              "retroalimentacion": "Los atacantes que comprometen una cuenta responden en hilos reales para que confíes."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirlo solo si el archivo es .xlsx",
+              "retroalimentacion": "El tipo de archivo no importa si el enlace lleva a un dominio falso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder al hilo preguntando si es real",
+              "retroalimentacion": "Si la cuenta está comprometida, el atacante contestará que sí."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ignorar el hilo para siempre sin avisar",
+              "retroalimentacion": "Ignorarlo no resuelve nada: debes verificar y reportarlo."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Detector de clones",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Clone phishing.",
+        "figura": {
+          "nombre_archivo": "detector-de-clones.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Adjuntos maliciosos",
+      "descripcion": "El correo trae un archivo que, al abrirlo, instala un programa malicioso. Suele disfrazarse de factura, currículum o documento urgente, y usa extensiones peligrosas (.exe, .js, .xlsm con macros, .zip con contraseña). Qué hacer: No abras el archivo. Confirma con el área de Compras o con el proveedor por un canal conocido.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "AD-B1",
+            "remitente": {
+              "nombre": "Facturación Proveedor",
+              "correo": "cobranzas@proveedor-facturas.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 10:03",
+            "asunto": "Factura vencida 004821 - apertura obligatoria",
+            "cuerpo": "Buenos días:\n\nTiene una factura vencida con nuestra empresa. Abra el archivo adjunto y #AD-B1-3# para ver el detalle. #AD-B1-4#.\n\nÁrea de Cobranzas",
+            "adjunto": {
+              "nombre_archivo": "Factura_004821.xlsm"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-B1-1",
+                "texto_indicador": "cobranzas@proveedor-facturas.net",
+                "retroalimentacion": "Adjunto que no esperabas. No tienes ninguna compra pendiente con este proveedor desconocido."
+              },
+              {
+                "id_indicador": "AD-B1-2",
+                "texto_indicador": "Factura_004821.xlsm",
+                "retroalimentacion": "Extensión peligrosa. «.xlsm» es un Excel con macros: puede ejecutar código al abrirlo. Una factura normal llega en PDF."
+              },
+              {
+                "id_indicador": "AD-B1-3",
+                "texto_indicador": "habilite el contenido",
+                "retroalimentacion": "Pide habilitar el contenido. «Habilite el contenido» es pedirte que actives las macros, que es lo que instala el programa malicioso."
+              },
+              {
+                "id_indicador": "AD-B1-4",
+                "texto_indicador": "Si no lo revisa hoy se aplicará una penalidad",
+                "retroalimentacion": "Amenaza para que lo abras rápido. La penalidad «hoy» busca que lo abras sin consultar."
+              }
+            ]
+          },
+          "enunciado": "¿Cuál es el mayor riesgo de este correo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Abrir el archivo .xlsm y habilitar sus macros, que pueden instalar un programa malicioso",
+              "retroalimentacion": "¡Correcto! Es un adjunto que no esperabas, con macros, y una amenaza para que lo abras rápido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar una factura que no debes",
+              "retroalimentacion": "El objetivo no es el pago, es que abras el archivo y actives las macros."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el proveedor se moleste si no respondes",
+              "retroalimentacion": "No conoces a este proveedor ni tienes compras pendientes con él."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno, las facturas en Excel son normales",
+              "retroalimentacion": "Una factura normal llega en PDF; un .xlsm puede ejecutar código al abrirlo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacer clic en un enlace",
+              "retroalimentacion": "No tiene enlace; el riesgo está en el adjunto."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-B2",
+            "remitente": {
+              "nombre": "Postulante - Analista",
+              "correo": "postulacion.trabajo2026@gmail.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "CV para el puesto de analista",
+            "cuerpo": "Buenas tardes:\n\nAdjunto mi CV para el puesto de analista. Si no se ve bien, haga clic en «#AD-B2-1#».",
+            "adjunto": {
+              "nombre_archivo": "CV_Analista.docm"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-B2-1",
+                "texto_indicador": "Habilitar contenido",
+                "retroalimentacion": "Las macros son pequeños programas dentro de Office. Un CV real no necesita macros."
+              }
+            ]
+          },
+          "enunciado": "¿Qué significa que te pida «Habilitar contenido»?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que quiere que actives las macros del documento, que pueden instalar programas maliciosos",
+              "retroalimentacion": "¡Exacto! Las macros son pequeños programas dentro de Office. Un CV real no necesita macros."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el archivo está dañado",
+              "retroalimentacion": "Es una excusa para que actives las macros."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que necesitas actualizar Word",
+              "retroalimentacion": "No tiene que ver con actualizar Word."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el documento es confidencial",
+              "retroalimentacion": "No dice nada de confidencialidad; pide activar macros."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el postulante sabe mucho de informática",
+              "retroalimentacion": "No; es la forma de ejecutar código malicioso en tu computadora."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-B3",
+            "remitente": {
+              "nombre": "Notificaciones SUNAT",
+              "correo": "notificacion@sunat-avisos.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Notificación de multa pendiente",
+            "cuerpo": "Tiene una notificación de multa pendiente. Descargue el detalle en el archivo adjunto.",
+            "adjunto": {
+              "nombre_archivo": "Multa_detalle.zip"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-B3-1",
+                "texto_indicador": "Multa_detalle.zip",
+                "retroalimentacion": "Un .zip inesperado puede esconder un programa. Si hay una multa real, aparecerá en el portal oficial."
+              }
+            ]
+          },
+          "enunciado": "No esperabas ninguna multa. ¿Qué es lo más seguro?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No abrir el .zip y revisar tu situación entrando tú mismo al portal oficial de SUNAT",
+              "retroalimentacion": "¡Correcto! Un .zip inesperado puede esconder un programa. Si hay una multa real, aparecerá en el portal oficial."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrir el .zip para ver de qué multa se trata",
+              "retroalimentacion": "Abrirlo es justo lo que busca el atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a Contabilidad para que lo abran ellos",
+              "retroalimentacion": "Pasarlo solo traslada el riesgo a otra persona."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirlo desde el celular",
+              "retroalimentacion": "Cambiar de dispositivo no lo hace seguro."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder pidiendo que lo envíen en otro formato",
+              "retroalimentacion": "Le escribirías al atacante."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "AD-I1",
+            "remitente": {
+              "nombre": "Contabilidad - TecnoPerú",
+              "correo": "contabilidad@tecnoperu-facturas.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Facturas del trimestre",
+            "cuerpo": "Adjunto las facturas del trimestre. El archivo está protegido; #AD-I1-1#.",
+            "adjunto": {
+              "nombre_archivo": "Facturas_Q3.zip"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-I1-1",
+                "texto_indicador": "la contraseña es 2026",
+                "retroalimentacion": "Si el archivo está cifrado, los filtros no lo analizan. Y si la contraseña viene en el mismo correo, no protege nada: solo esconde el contenido."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué un .zip con la contraseña escrita en el mismo correo es sospechoso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque la contraseña sirve para que el antivirus del correo no pueda revisar lo que hay dentro",
+              "retroalimentacion": "¡Exacto! Si el archivo está cifrado, los filtros no lo analizan. Y si la contraseña viene en el mismo correo, no protege nada: solo esconde el contenido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los .zip siempre tienen virus",
+              "retroalimentacion": "No siempre, pero este truco es típico para evitar el análisis."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque 2026 es una contraseña débil",
+              "retroalimentacion": "El problema no es la fuerza de la contraseña, sino para qué se usa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es sospechoso: la contraseña lo hace seguro",
+              "retroalimentacion": "Una contraseña en el mismo correo no protege nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque las facturas nunca se envían por correo",
+              "retroalimentacion": "Sí se envían, pero normalmente en PDF y sin este truco."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-I2",
+            "remitente": {
+              "nombre": "Mesa de Partes",
+              "correo": "mesadepartes@municipalidad-lima.org"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Resolución de su trámite",
+            "cuerpo": "Se adjunta la resolución sobre su trámite. Para visualizarla correctamente, descargue el visor adjunto.",
+            "adjunto": {
+              "nombre_archivo": "Visor_Resolucion.js"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-I2-1",
+                "texto_indicador": "Visor_Resolucion.js",
+                "retroalimentacion": "Los archivos .js, .vbs o .bat son instrucciones que la computadora ejecuta. Un documento oficial no necesita un «visor» así."
+              }
+            ]
+          },
+          "enunciado": "¿Qué tipo de archivo es «Visor_Resolucion.js»?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Un script que se ejecuta al abrirlo y puede descargar programas maliciosos",
+              "retroalimentacion": "¡Correcto! Los archivos .js, .vbs o .bat son instrucciones que la computadora ejecuta. Un documento oficial no necesita un «visor» así."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Un documento de texto",
+              "retroalimentacion": "No es un documento: es código que se ejecuta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Una imagen",
+              "retroalimentacion": "No es una imagen; .js es un script."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Un PDF protegido",
+              "retroalimentacion": "No es un PDF."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Un archivo de audio",
+              "retroalimentacion": "No es audio."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-I3",
+            "remitente": {
+              "nombre": "Logística",
+              "correo": "logistica@empresa-envios.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Orden de despacho 7781",
+            "cuerpo": "Hola:\n\nAdjunto la orden de despacho que pediste. Ábrela desde tu computadora del trabajo, en el celular no se ve.",
+            "adjunto": {
+              "nombre_archivo": "Orden_despacho_7781.iso"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-I3-1",
+                "texto_indicador": "Orden_despacho_7781.iso",
+                "retroalimentacion": "Los archivos .iso o .img se usan para esconder ejecutables. Como además no lo esperabas, lo correcto es no abrirlo y reportarlo."
+              }
+            ]
+          },
+          "enunciado": "No pediste ninguna orden y el archivo es .iso. ¿Qué concluyes?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Es sospechoso: un .iso puede contener programas y la orden no la esperabas",
+              "retroalimentacion": "¡Correcto! Los archivos .iso o .img se usan para esconder ejecutables. Como además no lo esperabas, lo correcto es no abrirlo y reportarlo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Es seguro porque lo envía Logística",
+              "retroalimentacion": "El nombre del área no prueba nada, y el dominio es externo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hay que abrirlo en la computadora del trabajo, como dice",
+              "retroalimentacion": "Justamente quiere que lo abras donde hay información valiosa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Es un archivo de música",
+              "retroalimentacion": "No; un .iso es una imagen de disco que puede contener programas."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Basta con abrirlo y cerrarlo rápido",
+              "retroalimentacion": "Basta un momento para que se ejecute; lo correcto es no abrirlo y reportarlo."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "AD-A1",
+            "remitente": {
+              "nombre": "Carlos Méndez",
+              "correo": "carlos.mendez@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Informe de ventas Q3",
+            "cuerpo": "Te comparto el informe que me pediste. Tiene macros para las tablas dinámicas; #AD-A1-1#.",
+            "adjunto": {
+              "nombre_archivo": "Informe_ventas_Q3.xlsm"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-A1-1",
+                "texto_indicador": "actívalas para que se actualicen",
+                "retroalimentacion": "Su cuenta pudo ser comprometida y aprovechar que esperabas el informe. Las macros se activan solo si se confirma el origen."
+              }
+            ]
+          },
+          "enunciado": "Sí le pediste un informe a Carlos, pero el archivo pide activar macros. ¿Qué haces?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Confirmar con Carlos por otro canal que él lo envió y que necesita macros antes de activarlas",
+              "retroalimentacion": "¡Correcto! Su cuenta pudo ser comprometida y aprovechar que esperabas el informe. Las macros se activan solo si se confirma el origen."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Activar las macros porque esperabas el informe",
+              "retroalimentacion": "Esperar el archivo baja tu guardia; el atacante cuenta con eso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirlo y activar las macros solo un momento",
+              "retroalimentacion": "Basta un momento para que el código se ejecute."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Cambiar la extensión a .xlsx y abrirlo",
+              "retroalimentacion": "No es una forma segura de revisar un archivo dudoso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a un compañero para que lo pruebe",
+              "retroalimentacion": "Solo trasladas el riesgo a otra persona."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-A2",
+            "remitente": {
+              "nombre": "Recursos Humanos",
+              "correo": "rrhh@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Nueva política de teletrabajo 2027",
+            "cuerpo": "Estimados:\n\nCompartimos la nueva política de teletrabajo. Es obligatorio leerla antes del viernes.",
+            "adjunto": {
+              "nombre_archivo": "Politica_Teletrabajo_2027.pdf.lnk"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "AD-A2-1",
+                "texto_indicador": "Politica_Teletrabajo_2027.pdf.lnk",
+                "retroalimentacion": "Los .lnk se usan para ejecutar instrucciones ocultas. Fíjate siempre en la extensión final, sobre todo en correos creíbles."
+              }
+            ]
+          },
+          "enunciado": "El remitente y el tema son creíbles. ¿Qué detalle del adjunto lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "La extensión .lnk: es un acceso directo que puede ejecutar comandos, no un PDF",
+              "retroalimentacion": "¡Exacto! Los .lnk se usan para ejecutar instrucciones ocultas. Fíjate siempre en la extensión final, sobre todo en correos creíbles."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea obligatorio leerla",
+              "retroalimentacion": "Las políticas suelen ser obligatorias; no es la señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el nombre sea largo",
+              "retroalimentacion": "La longitud no importa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que hable de teletrabajo",
+              "retroalimentacion": "El tema es creíble a propósito."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: es un PDF de Recursos Humanos",
+              "retroalimentacion": "Mira el final: .pdf.lnk no es un PDF."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "AD-A3",
+            "remitente": {
+              "nombre": "Ana Gómez - Banco Andino",
+              "correo": "ana.gomez@bancoandino.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Propuesta firmada",
+            "cuerpo": "Hola:\n\nTe envío la propuesta firmada. Como pesa mucho, la subí a un enlace: descarga el archivo e instálalo para ver el documento firmado digitalmente.\n\n#AD-A3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "AD-A3-1",
+                "texto_indicador": "Propuesta_firmada.exe (WeTransfer)",
+                "enlace": "https://we-transfer-files.net/propuesta",
+                "retroalimentacion": "Ver un documento firmado nunca requiere instalar un programa. Las tres señales juntas delatan el ataque."
+              }
+            ]
+          },
+          "enunciado": "¿Qué señales combinadas muestran que es un ataque con archivo malicioso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El archivo es un .exe, pide «instalarlo» para ver un documento y el enlace imita a WeTransfer",
+              "retroalimentacion": "¡Correcto! Ver un documento firmado nunca requiere instalar un programa. Las tres señales juntas delatan el ataque."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el archivo pese mucho",
+              "retroalimentacion": "Es una excusa para mandarte a un enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que venga de un cliente",
+              "retroalimentacion": "Los clientes envían propuestas; el problema está en el archivo y el enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga «firmado digitalmente»",
+              "retroalimentacion": "La firma digital existe; aquí se usa como pretexto."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguna: WeTransfer es seguro",
+              "retroalimentacion": "El enlace no es de WeTransfer: es we-transfer-files.net."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Revisor de adjuntos",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Adjuntos maliciosos.",
+        "figura": {
+          "nombre_archivo": "revisor-de-adjuntos.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Enlaces a sitios falsificados",
+      "descripcion": "El correo lleva a una página que imita a la real (banco, Microsoft, Google Drive) para robar lo que escribas. El truco está en la dirección: letras cambiadas (micros0ft), dominios largos (microsoft.com.verificar.net) o un texto de enlace que no coincide con el destino. Qué hacer: Pasa el cursor antes de hacer clic y entra al servicio escribiendo tú la dirección oficial.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "EN-B1",
+            "remitente": {
+              "nombre": "Google Drive",
+              "correo": "drive-shares@docs-google.co"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Ayer, 19:41",
+            "asunto": "Te compartieron «Planilla_Sueldos_2026.xlsx»",
+            "cuerpo": "Recursos Humanos compartió contigo un archivo.\n\nPara verlo, #EN-B1-3#. El acceso estará disponible #EN-B1-4#.\n\n#EN-B1-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-B1-1",
+                "texto_indicador": "drive.google.com/planilla-sueldos",
+                "enlace": "https://docs-google.co/login?file=planilla",
+                "retroalimentacion": "El texto del enlace no es el destino. Se ve «drive.google.com», pero al pasar el cursor el destino real es docs-google.co. Lo que importa es el destino."
+              },
+              {
+                "id_indicador": "EN-B1-2",
+                "texto_indicador": "drive-shares@docs-google.co",
+                "retroalimentacion": "Dominio falso. Google Drive usa google.com. docs-google.co es otro dominio que solo lo imita."
+              },
+              {
+                "id_indicador": "EN-B1-3",
+                "texto_indicador": "inicia sesión con tu cuenta de Google en el enlace",
+                "retroalimentacion": "Pide iniciar sesión. La página falsa copiará la de Google para quedarse con tu contraseña."
+              },
+              {
+                "id_indicador": "EN-B1-4",
+                "texto_indicador": "solo por 24 horas",
+                "retroalimentacion": "Anzuelo y prisa. Un archivo atractivo (sueldos) y un plazo de 24 horas para que hagas clic sin revisar."
+              }
+            ]
+          },
+          "enunciado": "¿Qué deberías revisar antes de hacer clic en el enlace?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El destino real del enlace, que no es de Google sino docs-google.co",
+              "retroalimentacion": "¡Correcto! El texto dice drive.google.com, pero el destino real es otro dominio que imita a Google."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo el texto del enlace",
+              "retroalimentacion": "El texto se puede escribir como el atacante quiera; lo que importa es el destino."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "El tamaño del archivo",
+              "retroalimentacion": "El tamaño no dice nada sobre la seguridad del enlace."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el archivo sea interesante",
+              "retroalimentacion": "Que sea atractivo (sueldos) es justamente el anzuelo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada, Google Drive es seguro",
+              "retroalimentacion": "Google Drive sí, pero este mensaje no viene de Google."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-B2",
+            "remitente": {
+              "nombre": "Soporte Universidad",
+              "correo": "soporte@u1ima.edu.pe"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Tu correo institucional será desactivado",
+            "cuerpo": "Tu correo institucional será desactivado. Reactívalo en el portal.\n\n#EN-B2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-B2-1",
+                "texto_indicador": "soporte@u1ima.edu.pe",
+                "retroalimentacion": "Cambiar letras por números o letras parecidas (l/1, o/0, rn/m) es un truco muy común."
+              },
+              {
+                "id_indicador": "EN-B2-enlace",
+                "texto_indicador": "Reactivar cuenta",
+                "enlace": "https://u1ima.edu.pe/reactivar",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Qué truco usa la dirección u1ima.edu.pe?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Cambia la «l» de ulima por el número «1» para que parezca real",
+              "retroalimentacion": "¡Exacto! Cambiar letras por números o letras parecidas (l/1, o/0, rn/m) es un truco muy común."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: es la dirección de la universidad",
+              "retroalimentacion": "Léela letra por letra: u1ima no es ulima."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa mayúsculas",
+              "retroalimentacion": "No hay mayúsculas; el truco es el 1."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Es más corta que la real",
+              "retroalimentacion": "Tiene el mismo largo; cambia un carácter."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa un dominio .com",
+              "retroalimentacion": "Termina en .edu.pe; el engaño está en el 1."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-B3",
+            "remitente": {
+              "nombre": "Instagram",
+              "correo": "security@instagram-help.co"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Alguien intentó entrar a tu cuenta",
+            "cuerpo": "Alguien intentó entrar a tu cuenta. Si no fuiste tú, cambia tu contraseña aquí.\n\n#EN-B3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-B3-1",
+                "texto_indicador": "instagram.com/seguridad",
+                "enlace": "https://instagram-help.co/reset",
+                "retroalimentacion": "Si hubo un intento real, la aplicación te lo mostrará. Nunca cambies tu contraseña desde un enlace de un correo inesperado."
+              }
+            ]
+          },
+          "enunciado": "¿Qué es lo correcto si te preocupa tu cuenta?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Abrir la aplicación oficial de Instagram y cambiar la contraseña desde ahí",
+              "retroalimentacion": "¡Correcto! Si hubo un intento real, la aplicación te lo mostrará. Nunca cambies tu contraseña desde un enlace de un correo inesperado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usar el enlace rápido antes de que entren",
+              "retroalimentacion": "La prisa es la trampa; el enlace es falso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responder el correo con tu contraseña nueva",
+              "retroalimentacion": "Nunca envíes contraseñas por correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a tus contactos",
+              "retroalimentacion": "Solo los expone al mismo engaño."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Hacer clic y solo mirar",
+              "retroalimentacion": "La página falsa puede pedirte datos o descargar algo."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "EN-I1",
+            "remitente": {
+              "nombre": "Microsoft 365",
+              "correo": "no-reply@microsoft.com-verify.co"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su sesión expiró",
+            "cuerpo": "Su sesión expiró. Inicie sesión de nuevo para seguir usando Outlook.\n\n#EN-I1-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-I1-1",
+                "texto_indicador": "Iniciar sesión",
+                "enlace": "https://login.microsoftonline.com.verify.co/auth",
+                "retroalimentacion": "Se lee de derecha a izquierda hasta la primera barra: el dominio real es verify.co. Lo de la izquierda («login.microsoftonline.com») es solo un adorno."
+              }
+            ]
+          },
+          "enunciado": "¿Cuál es el dominio real de este enlace?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "verify.co",
+              "retroalimentacion": "¡Correcto! Se lee de derecha a izquierda hasta la primera barra: el dominio real es verify.co. Lo de la izquierda («login.microsoftonline.com») es solo un adorno."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "microsoftonline.com",
+              "retroalimentacion": "Aparece en el texto, pero no es el dominio real: después viene .verify.co."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "login.microsoftonline.com",
+              "retroalimentacion": "Es la parte de la izquierda; el dominio real está al final."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "microsoft.com",
+              "retroalimentacion": "No; el dominio real es verify.co."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "auth",
+              "retroalimentacion": "«auth» es parte de la ruta, después de la barra."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-I2",
+            "remitente": {
+              "nombre": "Netflix",
+              "correo": "info@mailer-netflix.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Tu cuenta fue suspendida temporalmente",
+            "cuerpo": "Tu cuenta fue suspendida temporalmente. Revisa los detalles aquí.\n\n#EN-I2-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-I2-1",
+                "texto_indicador": "bit.ly/netflix-cuenta",
+                "enlace": "https://bit.ly/3xYz9Q",
+                "retroalimentacion": "Los acortadores esconden la dirección final. Un servicio real usa su propio dominio."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué un enlace acortado (bit.ly) en un aviso de cuenta es una señal de alerta?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque oculta el destino real y no puedes saber a qué sitio te lleva",
+              "retroalimentacion": "¡Exacto! Los acortadores esconden la dirección final. Un servicio real usa su propio dominio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque bit.ly es un virus",
+              "retroalimentacion": "bit.ly no es un virus; el problema es que oculta el destino."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los enlaces cortos no funcionan",
+              "retroalimentacion": "Sí funcionan; por eso sirven para esconder destinos."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es una señal, solo es más cómodo",
+              "retroalimentacion": "En avisos de cuentas, esconder el destino es sospechoso."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque está en inglés",
+              "retroalimentacion": "El idioma no es la señal."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-I3",
+            "remitente": {
+              "nombre": "PayPal",
+              "correo": "service@paypa1-resolution.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Recibiste un pago de USD 350",
+            "cuerpo": "Recibiste un pago de USD 350. Para liberarlo, confirma tus datos en el centro de resoluciones.\n\n#EN-I3-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-I3-1",
+                "texto_indicador": "service@paypa1-resolution.com",
+                "retroalimentacion": "Combinar letras cambiadas con palabras como «secure», «login» o «resolution» hace que el dominio falso parezca oficial."
+              },
+              {
+                "id_indicador": "EN-I3-enlace",
+                "texto_indicador": "Centro de resoluciones",
+                "enlace": "https://paypa1-resolution.com/confirm",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "¿Qué dos trucos de dirección se combinan aquí?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Cambia la «l» por «1» (paypa1) y agrega una palabra creíble (resolution)",
+              "retroalimentacion": "¡Correcto! Combinar letras cambiadas con palabras como «secure», «login» o «resolution» hace que el dominio falso parezca oficial."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa https y un candado",
+              "retroalimentacion": "No se ve ningún candado, y aunque lo tuviera no probaría nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Usa letras mayúsculas",
+              "retroalimentacion": "No hay mayúsculas; los trucos son el 1 y la palabra extra."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Es un dominio .gob",
+              "retroalimentacion": "No es .gob."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: es PayPal",
+              "retroalimentacion": "PayPal usa paypal.com; esto es otro dominio."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "EN-A1",
+            "remitente": {
+              "nombre": "Google Workspace",
+              "correo": "workspace-noreply@google.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Te compartieron «Evaluación de desempeño 2026»",
+            "cuerpo": "Un administrador compartió contigo «Evaluación de desempeño 2026». Haz clic para abrirlo.\n\n#EN-A1-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-A1-1",
+                "texto_indicador": "Abrir en Google Docs",
+                "enlace": "https://docs.google.com.document-share.io/d/88aa",
+                "retroalimentacion": "Lo que va después de «docs.google.com» (.document-share.io) cambia todo. El dominio real se lee al final, antes de la primera barra."
+              }
+            ]
+          },
+          "enunciado": "El remitente parece de Google y el enlace empieza con docs.google.com. ¿Es seguro?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No: el dominio real es document-share.io",
+              "retroalimentacion": "¡Exacto! Lo que va después de «docs.google.com» (.document-share.io) cambia todo. El dominio real se lee al final, antes de la primera barra."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque empieza con docs.google.com",
+              "retroalimentacion": "El inicio no manda; el dominio real está al final."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque el remitente es google.com",
+              "retroalimentacion": "El remitente se puede falsificar; el enlace lo delata."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Sí, porque tiene https",
+              "retroalimentacion": "Las páginas falsas también usan https."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo si lo compartió un administrador",
+              "retroalimentacion": "Quién dice compartirlo no cambia el destino falso."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-A2",
+            "remitente": {
+              "nombre": "Banco Andino",
+              "correo": "alertas@bancoandino.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Actualizamos nuestros términos",
+            "cuerpo": "Actualizamos nuestros términos y condiciones. Puedes revisarlos en nuestra web.\n\n#EN-A2-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-A2-1",
+                "texto_indicador": "bancoandino.com.pe/terminos",
+                "enlace": "https://bancoandino.com.pe@185.22.10.4/terminos",
+                "retroalimentacion": "En una dirección web, lo que va antes de la @ se trata como usuario y se descarta. El sitio real es ese número IP, que no es del banco."
+              }
+            ]
+          },
+          "enunciado": "El enlace muestra bancoandino.com.pe, pero el destino tiene una «@». ¿Qué significa?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que todo lo que está antes de la @ se ignora: el destino real es la dirección IP 185.22.10.4",
+              "retroalimentacion": "¡Correcto! En una dirección web, lo que va antes de la @ se trata como usuario y se descarta. El sitio real es ese número IP, que no es del banco."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que es un correo electrónico del banco",
+              "retroalimentacion": "No es un correo: es una dirección web con un truco."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el enlace es más seguro",
+              "retroalimentacion": "La @ se usa para engañar, no para dar seguridad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que lleva a bancoandino.com.pe",
+              "retroalimentacion": "No; lo que está antes de la @ se ignora."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada: es un error de escritura",
+              "retroalimentacion": "No es un error: es un truco intencional."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "EN-A3",
+            "remitente": {
+              "nombre": "Microsoft 365",
+              "correo": "no-reply@microsoft.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "3 mensajes retenidos en cuarentena",
+            "cuerpo": "Hay 3 mensajes retenidos en cuarentena. Revísalos para liberarlos antes de que se eliminen.\n\n#EN-A3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "EN-A3-1",
+                "texto_indicador": "Revisar mensajes",
+                "enlace": "https://rnicrosoft-365.com/quarantine",
+                "retroalimentacion": "«rn» se ve casi igual que «m», sobre todo en letra pequeña. Lee los dominios despacio, letra por letra."
+              }
+            ]
+          },
+          "enunciado": "Todo parece de Microsoft. ¿Qué detalle del enlace lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "rnicrosoft usa «rn» en lugar de «m»",
+              "retroalimentacion": "¡Exacto! «rn» se ve casi igual que «m», sobre todo en letra pequeña. Lee los dominios despacio, letra por letra."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga quarantine en inglés",
+              "retroalimentacion": "El idioma de la ruta no es la señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que haya 3 mensajes",
+              "retroalimentacion": "El número no importa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use un guion antes de 365",
+              "retroalimentacion": "El guion no es lo más importante: el truco es «rn» por «m»."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: es Microsoft",
+              "retroalimentacion": "Léelo despacio: rnicrosoft no es microsoft."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Analista de enlaces",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Enlaces a sitios falsificados.",
+        "figura": {
+          "nombre_archivo": "analista-de-enlaces.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Quishing",
+      "descripcion": "Es phishing con código QR. En vez de un enlace, el correo trae un QR para que lo escanees con el celular. Así la dirección queda oculta, muchos filtros de correo no la revisan y terminas en una página falsa desde tu teléfono. Qué hacer: No escanees QR de correos inesperados; configura la seguridad entrando tú mismo al portal oficial.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "QR-B1",
+            "remitente": {
+              "nombre": "Seguridad Microsoft 365",
+              "correo": "mfa-alerta@m365-seguridad.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Ayer, 15:06",
+            "asunto": "Acción requerida: reactive su autenticación en dos pasos",
+            "cuerpo": "Su autenticación en dos pasos (MFA) #QR-B1-4#.\n\n#QR-B1-2# y vuelva a registrar su cuenta para no perder el acceso al correo.",
+            "adjunto": {
+              "nombre_archivo": "Reactivar_MFA_QR.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-B1-1",
+                "texto_indicador": "Reactivar_MFA_QR.png",
+                "retroalimentacion": "Un QR en lugar de un enlace. El QR esconde la dirección: no puedes revisarla antes de escanear, que es justo lo que busca el atacante."
+              },
+              {
+                "id_indicador": "QR-B1-2",
+                "texto_indicador": "Escanee el código QR adjunto con la cámara de su celular",
+                "retroalimentacion": "Te pasa al celular. Escanear con el celular te saca de la computadora protegida y en una pantalla pequeña es más difícil ver la dirección."
+              },
+              {
+                "id_indicador": "QR-B1-3",
+                "texto_indicador": "mfa-alerta@m365-seguridad.com",
+                "retroalimentacion": "Remitente que no es Microsoft. m365-seguridad.com no es un dominio de Microsoft."
+              },
+              {
+                "id_indicador": "QR-B1-4",
+                "texto_indicador": "se desactivará hoy",
+                "retroalimentacion": "Urgencia con la seguridad. Usa el miedo a perder el acceso para que actúes rápido."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué el código QR de este correo es una señal de riesgo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque oculta la dirección y te lleva al celular, donde es más difícil revisarla",
+              "retroalimentacion": "¡Correcto! Es quishing: el QR esconde el destino, evita los filtros del correo y te pasa a una pantalla pequeña."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los QR siempre tienen virus",
+              "retroalimentacion": "No siempre; el problema es que no puedes ver a dónde lleva antes de escanearlo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque Microsoft nunca usa QR",
+              "retroalimentacion": "Algunos servicios usan QR; aquí lo sospechoso es el remitente y que oculte la dirección."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es un riesgo, es más seguro que un enlace",
+              "retroalimentacion": "Es al revés: con un QR no puedes revisar el destino."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el QR es muy pequeño",
+              "retroalimentacion": "El tamaño no importa; importa lo que esconde."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-B2",
+            "remitente": {
+              "nombre": "Restaurante El Buen Sabor",
+              "correo": "promos@elbuensabor-cupones.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "¡Ganaste un almuerzo gratis!",
+            "cuerpo": "¡Ganaste un almuerzo gratis! Escanea el QR para reclamarlo e ingresa tus datos y tu tarjeta para la reserva.",
+            "adjunto": {
+              "nombre_archivo": "Cupon_QR.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-B2-1",
+                "texto_indicador": "Cupon_QR.png",
+                "retroalimentacion": "El filtro ve una imagen, no una dirección, y tú no puedes leerla antes de escanear."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué los atacantes usan un QR en lugar de un enlace?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque el QR oculta la dirección y muchos filtros de correo no lo revisan",
+              "retroalimentacion": "¡Exacto! El filtro ve una imagen, no una dirección, y tú no puedes leerla antes de escanear."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el QR se ve más profesional",
+              "retroalimentacion": "No es por estética; es para esconder el destino."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los QR no se pueden falsificar",
+              "retroalimentacion": "Se pueden crear QR que lleven a cualquier sitio."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los bancos solo usan QR",
+              "retroalimentacion": "No es cierto, y no es el motivo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el QR es más rápido de leer",
+              "retroalimentacion": "La rapidez no es el motivo principal."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-B3",
+            "remitente": {
+              "nombre": "Seguridad TI",
+              "correo": "seguridad@empresa-mfa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Active la nueva verificación en dos pasos",
+            "cuerpo": "Escanee este QR con su celular para activar la nueva verificación en dos pasos.",
+            "adjunto": {
+              "nombre_archivo": "Activar_MFA.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-B3-1",
+                "texto_indicador": "seguridad@empresa-mfa.com",
+                "retroalimentacion": "Un cambio de seguridad real se confirma con TI y se configura desde el portal oficial, no desde un QR de un correo."
+              }
+            ]
+          },
+          "enunciado": "Antes de escanear un QR que llegó por correo, ¿qué conviene hacer?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Verificar con el área de TI por un canal oficial y, si es real, hacerlo desde el portal oficial",
+              "retroalimentacion": "¡Correcto! Un cambio de seguridad real se confirma con TI y se configura desde el portal oficial, no desde un QR de un correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo rápido para no perder el acceso",
+              "retroalimentacion": "La prisa es la trampa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo con el celular de otra persona",
+              "retroalimentacion": "Solo cambia quién corre el riesgo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Imprimirlo y escanearlo después",
+              "retroalimentacion": "Imprimirlo no lo hace seguro."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reenviarlo a tus compañeros",
+              "retroalimentacion": "Expones a más personas."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "QR-I1",
+            "remitente": {
+              "nombre": "Recursos Humanos",
+              "correo": "rrhh@empresa-documentos.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su boleta de pago está disponible",
+            "cuerpo": "Su boleta de pago está disponible. Por seguridad, #QR-I1-1#.",
+            "adjunto": {
+              "nombre_archivo": "Boleta_QR.pdf"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-I1-1",
+                "texto_indicador": "solo puede verla escaneando este QR con su celular",
+                "retroalimentacion": "El celular suele tener menos protecciones y la pantalla pequeña oculta la dirección completa."
+              }
+            ]
+          },
+          "enunciado": "¿Por qué es sospechoso que solo se pueda ver «con el celular»?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque te saca de la computadora protegida y en el celular es más difícil revisar la dirección",
+              "retroalimentacion": "¡Exacto! El celular suele tener menos protecciones y la pantalla pequeña oculta la dirección completa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los celulares siempre tienen virus",
+              "retroalimentacion": "No siempre; el punto es que tienen menos controles y la dirección se ve peor."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es sospechoso: es más seguro",
+              "retroalimentacion": "Es al revés: es una forma de evitar los controles."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque las boletas no existen",
+              "retroalimentacion": "Las boletas existen; el problema es cómo te piden verla."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el QR está en un PDF",
+              "retroalimentacion": "El PDF solo es el envase; lo importante es que te manda al celular."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-I2",
+            "remitente": {
+              "nombre": "Courier Express",
+              "correo": "entregas@courier-express-qr.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su paquete está retenido",
+            "cuerpo": "Su paquete está retenido. Escanee el QR y pague S/ 3.50 para liberarlo.",
+            "adjunto": {
+              "nombre_archivo": "Liberar_paquete_QR.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-I2-1",
+                "texto_indicador": "Liberar_paquete_QR.png",
+                "retroalimentacion": "Muchos celulares muestran la dirección antes de abrirla: revísala. Un dominio .xyz desconocido es una señal clara."
+              }
+            ]
+          },
+          "enunciado": "Escaneaste el QR y el celular muestra «courier-express-pago.xyz». ¿Qué haces?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No abrir la página: el dominio no es el oficial del courier",
+              "retroalimentacion": "¡Correcto! Muchos celulares muestran la dirección antes de abrirla: revísala. Un dominio .xyz desconocido es una señal clara."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirla, porque dice courier-express",
+              "retroalimentacion": "Contener el nombre de la empresa no la hace oficial."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar, porque el monto es pequeño",
+              "retroalimentacion": "El monto pequeño es el anzuelo; buscan tu tarjeta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Abrirla, pero no pagar",
+              "retroalimentacion": "Solo abrirla ya puede exponerte."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo otra vez para estar seguro",
+              "retroalimentacion": "Te llevará al mismo sitio falso."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-I3",
+            "remitente": {
+              "nombre": "Facilities",
+              "correo": "oficina@empresa-facilities.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Nuevos QR para reservar salas",
+            "cuerpo": "Pegamos nuevos códigos QR en las salas de reunión. Para reservar, escanéelos e #QR-I3-1#. Adjuntamos el instructivo.",
+            "adjunto": {
+              "nombre_archivo": "Instructivo_QR.pdf"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-I3-1",
+                "texto_indicador": "inicie sesión con su cuenta corporativa",
+                "retroalimentacion": "El objetivo es tu usuario y contraseña. El QR solo es el camino hacia la página falsa."
+              }
+            ]
+          },
+          "enunciado": "¿Qué pide al final el QR y por qué es un riesgo?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Iniciar sesión con tu cuenta corporativa en una página que no controlas",
+              "retroalimentacion": "¡Exacto! El objetivo es tu usuario y contraseña. El QR solo es el camino hacia la página falsa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Reservar una sala, lo que no tiene riesgo",
+              "retroalimentacion": "La reserva es la excusa; lo que buscan es tu cuenta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Descargar un instructivo inofensivo",
+              "retroalimentacion": "El instructivo lleva al QR, que pide tus credenciales."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Solo registrar tu asistencia",
+              "retroalimentacion": "No; pide iniciar sesión."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Pagar el uso de la sala",
+              "retroalimentacion": "No pide un pago; pide tu cuenta."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "QR-A1",
+            "remitente": {
+              "nombre": "Microsoft 365",
+              "correo": "no-reply@microsoft.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Nueva política: vuelva a registrar su MFA",
+            "cuerpo": "Para cumplir la nueva política de seguridad, todos los usuarios deben volver a registrar su MFA antes del lunes. Escanee el código con Microsoft Authenticator.",
+            "adjunto": {
+              "nombre_archivo": "Registro_MFA_Microsoft.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-A1-1",
+                "texto_indicador": "Registro_MFA_Microsoft.png",
+                "retroalimentacion": "Los atacantes usan QR que imitan el registro de MFA para vincular tu cuenta a su propio dispositivo. La configuración se hace desde el portal oficial."
+              }
+            ]
+          },
+          "enunciado": "El remitente parece real y menciona la aplicación Authenticator. ¿Qué haces?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Consultar con TI y registrar el MFA solo desde el portal oficial, no desde el QR del correo",
+              "retroalimentacion": "¡Correcto! Los atacantes usan QR que imitan el registro de MFA para vincular tu cuenta a su propio dispositivo. La configuración se hace desde el portal oficial."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo con Authenticator, porque es la aplicación oficial",
+              "retroalimentacion": "La aplicación es oficial, pero el QR puede registrar tu cuenta en el dispositivo del atacante."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo, porque el remitente es microsoft.com",
+              "retroalimentacion": "El remitente puede falsificarse."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Esperar al lunes y escanearlo",
+              "retroalimentacion": "El plazo no cambia el riesgo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Escanearlo y luego cambiar la contraseña",
+              "retroalimentacion": "Si el atacante ya registró su dispositivo, el daño está hecho."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-A2",
+            "remitente": {
+              "nombre": "Banco Andino",
+              "correo": "comunicaciones@bancoandino.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Su estado de cuenta de octubre",
+            "cuerpo": "Ahora puede pagar sus cuotas escaneando el QR de su estado de cuenta. Adjuntamos su estado de cuenta de octubre.",
+            "adjunto": {
+              "nombre_archivo": "EstadoCuenta_Octubre.pdf"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-A2-1",
+                "texto_indicador": "EstadoCuenta_Octubre.pdf",
+                "retroalimentacion": "Esconder el QR en un documento creíble evita los filtros y baja tu guardia. Paga siempre desde la aplicación oficial del banco."
+              }
+            ]
+          },
+          "enunciado": "El QR está dentro de un PDF de aspecto oficial. ¿Por qué esto lo hace más peligroso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque dentro de un PDF el QR es más difícil de analizar para los filtros y parece parte de un documento real",
+              "retroalimentacion": "¡Exacto! Esconder el QR en un documento creíble evita los filtros y baja tu guardia. Paga siempre desde la aplicación oficial del banco."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es peligroso: los PDF son seguros",
+              "retroalimentacion": "Un PDF puede contener un QR que lleve a una página falsa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque el PDF pesa mucho",
+              "retroalimentacion": "El tamaño no importa."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los bancos no envían estados de cuenta",
+              "retroalimentacion": "Sí los envían; por eso el engaño es creíble."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque los QR solo sirven en tiendas",
+              "retroalimentacion": "Los QR sirven para muchas cosas; el problema es a dónde llevan."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "QR-A3",
+            "remitente": {
+              "nombre": "CONEIS 2026 - Registro",
+              "correo": "registro@coneis-2026.org"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Tu entrada está lista",
+            "cuerpo": "Tu entrada está lista. Muestra el QR adjunto en la puerta. Si quieres cambiar de asiento, escanéalo e #QR-A3-1#.",
+            "adjunto": {
+              "nombre_archivo": "Entrada_QR.png"
+            },
+            "indicadores": [
+              {
+                "id_indicador": "QR-A3-1",
+                "texto_indicador": "inicia sesión con tu correo y contraseña de la universidad",
+                "retroalimentacion": "Un QR de entrada solo se muestra en la puerta. Pedir tus credenciales institucionales es la señal del ataque."
+              }
+            ]
+          },
+          "enunciado": "Un QR de entrada es normal en un evento. ¿Qué parte del mensaje lo vuelve un ataque?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que el QR te pida iniciar sesión con tu correo y contraseña de la universidad",
+              "retroalimentacion": "¡Correcto! Un QR de entrada solo se muestra en la puerta. Pedir tus credenciales institucionales es la señal del ataque."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea un evento",
+              "retroalimentacion": "Los eventos usan QR; el problema es lo que pide."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el QR venga en un PNG",
+              "retroalimentacion": "El formato no es la señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que puedas cambiar de asiento",
+              "retroalimentacion": "Es la excusa; lo grave es el pedido de credenciales."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguna: es una entrada normal",
+              "retroalimentacion": "Una entrada normal no te pide tu contraseña."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Lector de QR seguro",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Quishing.",
+        "figura": {
+          "nombre_archivo": "lector-de-qr-seguro.svg"
+        }
+      }
+    },
+    {
+      "nombre": "Correos escritos con inteligencia artificial",
+      "descripcion": "Con IA, un atacante escribe correos perfectos: sin faltas, con buen tono y adaptados a ti. Ya no sirve buscar errores de ortografía; hay que fijarse en quién lo envía, qué pide y si se puede verificar por otro canal. Qué hacer: No te fíes de la buena redacción: verifica el pedido con la persona por un canal que ya conozcas.",
+      "preguntas_basico": [
+        {
+          "mensaje": {
+            "id": "IA-B1",
+            "remitente": {
+              "nombre": "Lucía Herrera",
+              "correo": "lucia.herrera@finanzas-andina.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Ayer, 17:20",
+            "asunto": "Seguimiento a nuestra conversación del martes",
+            "cuerpo": "Hola, #IA-B1-1#.\n\n#IA-B1-2#, ya tenemos lista la actualización de la cuenta para los pagos del proyecto. Para no retrasar el cierre de mes, te agradecería #IA-B1-3# en el formulario.\n\nMuchas gracias por tu apoyo de siempre,\nLucía\n\n#IA-B1-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-B1-1",
+                "texto_indicador": "espero que tu semana vaya muy bien",
+                "retroalimentacion": "Redacción impecable. No tiene errores y el tono es cálido. Eso ya no prueba nada: la IA escribe así en segundos."
+              },
+              {
+                "id_indicador": "IA-B1-2",
+                "texto_indicador": "Como conversamos el martes",
+                "retroalimentacion": "Contexto que no puedes confirmar. Menciona una conversación «del martes» que quizá no recuerdas. Es una forma de ganarse tu confianza."
+              },
+              {
+                "id_indicador": "IA-B1-3",
+                "texto_indicador": "registrar la nueva cuenta bancaria hoy mismo",
+                "retroalimentacion": "Pide cambiar una cuenta bancaria. El objetivo real es que registres una cuenta nueva, como en un BEC."
+              },
+              {
+                "id_indicador": "IA-B1-4",
+                "texto_indicador": "lucia.herrera@finanzas-andina.com",
+                "retroalimentacion": "Dominio externo. finanzas-andina.com no es el dominio de tu empresa ni de un proveedor registrado."
+              },
+              {
+                "id_indicador": "IA-B1-enlace",
+                "texto_indicador": "Formulario de actualización",
+                "enlace": "https://finanzas-andina.com/form",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "El correo no tiene ningún error de redacción. ¿Por qué igual es sospechoso?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Porque pide registrar una nueva cuenta bancaria desde un dominio externo y menciona una conversación que no puedes confirmar",
+              "retroalimentacion": "¡Correcto! Con IA la redacción perfecta ya no prueba nada; hay que fijarse en quién lo envía y qué pide."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No es sospechoso porque está bien escrito",
+              "retroalimentacion": "La IA escribe sin errores en segundos; la buena redacción no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque tiene faltas de ortografía",
+              "retroalimentacion": "No tiene faltas; por eso ya no sirve buscar errores."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque trae un adjunto malicioso",
+              "retroalimentacion": "No trae adjunto; el riesgo es el pedido de cambio de cuenta."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Porque es demasiado corto",
+              "retroalimentacion": "La longitud no importa; importa el pedido y el remitente."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-B2",
+            "remitente": {
+              "nombre": "Soporte Técnico",
+              "correo": "soporte@helpdesk-online.net"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Actualización importante de tu equipo",
+            "cuerpo": "Hola:\n\nNotamos que tu equipo necesita una actualización importante. Para hacerla de forma remota, #IA-B2-1#. Gracias por tu colaboración.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-B2-1",
+                "texto_indicador": "necesitamos tu usuario y contraseña",
+                "retroalimentacion": "La IA mejora la redacción, pero el atacante siempre necesita pedirte algo: ese pedido es la señal."
+              }
+            ]
+          },
+          "enunciado": "¿Qué señal sigue siendo útil aunque el correo lo haya escrito una IA?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que pida datos sensibles (como tu contraseña) desde un dominio que no corresponde",
+              "retroalimentacion": "¡Exacto! La IA mejora la redacción, pero el atacante siempre necesita pedirte algo: ese pedido es la señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Las faltas de ortografía",
+              "retroalimentacion": "La IA ya no comete faltas."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el texto sea largo",
+              "retroalimentacion": "La longitud no indica nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use emojis",
+              "retroalimentacion": "Los emojis no son una señal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que esté escrito en español",
+              "retroalimentacion": "El idioma no importa."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-B3",
+            "remitente": {
+              "nombre": "Patricia Lozano",
+              "correo": "patricia.lozano@consultora-global.biz"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Una oportunidad para ti",
+            "cuerpo": "Hola, ¿cómo estás?\n\nTe escribo por recomendación de un colega tuyo. Me encantaría conversar sobre una oportunidad. ¿Podrías #IA-B3-1# para agilizar el proceso?",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-B3-1",
+                "texto_indicador": "enviarme tu CV con tu DNI y dirección",
+                "retroalimentacion": "El tono amable y la recomendación de «un colega» son fáciles de inventar con IA. Tus documentos sirven para robar tu identidad."
+              }
+            ]
+          },
+          "enunciado": "¿Qué es lo más prudente frente a este mensaje tan cordial?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "No enviar documentos personales y verificar por otro medio que la consultora y la persona existan",
+              "retroalimentacion": "¡Correcto! El tono amable y la recomendación de «un colega» son fáciles de inventar con IA. Tus documentos sirven para robar tu identidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviar todo, porque es una oportunidad laboral",
+              "retroalimentacion": "La oportunidad es el anzuelo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviar solo el DNI",
+              "retroalimentacion": "El DNI es justo lo que más sirve para suplantarte."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Preguntar quién la recomendó y luego enviar todo",
+              "retroalimentacion": "Puede inventar un nombre; verifica por fuera del correo."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Confiar, porque escribe muy bien",
+              "retroalimentacion": "La IA hace que cualquiera escriba bien."
+            }
+          ]
+        }
+      ],
+      "preguntas_intermedio": [
+        {
+          "mensaje": {
+            "id": "IA-I1",
+            "remitente": {
+              "nombre": "Jorge Salas - Jefe de Proyectos",
+              "correo": "jorge.salas@empresa-proyectos.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Un favor rápido",
+            "cuerpo": "Hola Gabriel:\n\n#IA-I1-1#, de verdad marcó la diferencia. Te pido un favor rápido: compra dos licencias de software para el equipo con la tarjeta corporativa y envíame los códigos. Te lo reembolso hoy mismo.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-I1-1",
+                "texto_indicador": "Gracias por el gran trabajo en el informe de ayer",
+                "retroalimentacion": "La IA genera halagos creíbles en segundos. El elogio prepara el terreno para el pedido de dinero."
+              }
+            ]
+          },
+          "enunciado": "El correo empieza con un elogio muy personal. ¿Para qué sirve?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Para generar confianza y que cumplas el pedido sin verificar",
+              "retroalimentacion": "¡Exacto! La IA genera halagos creíbles en segundos. El elogio prepara el terreno para el pedido de dinero."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Para motivarte en tu trabajo",
+              "retroalimentacion": "Aquí el elogio tiene otro fin: que bajes la guardia."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "No tiene ninguna función",
+              "retroalimentacion": "Sí la tiene: generar confianza antes del pedido."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Para demostrar que es tu jefe real",
+              "retroalimentacion": "Cualquiera puede escribir un elogio; no prueba identidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Para pedirte una reunión",
+              "retroalimentacion": "No pide una reunión; pide comprar licencias y enviar los códigos."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-I2",
+            "remitente": {
+              "nombre": "Equipo de Bienestar",
+              "correo": "bienestar@empresa-salud.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Campaña de salud mental: evaluación confidencial",
+            "cuerpo": "Querido equipo:\n\nEn el marco de nuestra campaña de salud mental preparamos una evaluación breve y confidencial. Tus respuestas nos ayudarán a diseñar mejores programas. Para garantizar la confidencialidad, #IA-I2-1#.\n\n#IA-I2-enlace#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-I2-1",
+                "texto_indicador": "ingresa con tu usuario y contraseña corporativos",
+                "retroalimentacion": "Una encuesta anónima no necesita tu contraseña, y menos en un dominio que no es empresa.com."
+              },
+              {
+                "id_indicador": "IA-I2-enlace",
+                "texto_indicador": "Evaluación confidencial",
+                "enlace": "https://empresa-salud.com/encuesta",
+                "retroalimentacion": ""
+              }
+            ]
+          },
+          "enunciado": "Es un mensaje cuidado y con un tema real. ¿Qué detalle no encaja?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Pide tu usuario y contraseña corporativos en un dominio externo «para garantizar la confidencialidad»",
+              "retroalimentacion": "¡Correcto! Una encuesta anónima no necesita tu contraseña, y menos en un dominio que no es empresa.com."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que hable de salud mental",
+              "retroalimentacion": "El tema es real y sensible a propósito."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que sea confidencial",
+              "retroalimentacion": "La confidencialidad es normal en encuestas; el problema es el pedido de credenciales."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que esté muy bien escrito",
+              "retroalimentacion": "La buena redacción ya no prueba nada."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que esté dirigido a todo el equipo",
+              "retroalimentacion": "Las campañas suelen ser para todos."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-I3",
+            "remitente": {
+              "nombre": "Carlos Méndez - Gerencia",
+              "correo": "c.mendez.gerencia@empresa-mail.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Reporte de clientes para el directorio",
+            "cuerpo": "Gabriel, sé que estás con mucha carga esta semana y lo valoro mucho. Necesito que me envíes hoy el reporte de clientes con sus datos de contacto; lo presentaré al directorio a primera hora.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-I3-1",
+                "texto_indicador": "c.mendez.gerencia@empresa-mail.com",
+                "retroalimentacion": "empresa-mail.com no es empresa.com. Un texto empático y bien escrito no reemplaza la verificación."
+              }
+            ]
+          },
+          "enunciado": "¿Qué debes revisar antes de enviar el reporte?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Que el dominio sea el de la empresa y confirmar el pedido con Carlos por otro canal",
+              "retroalimentacion": "¡Correcto! empresa-mail.com no es empresa.com. Un texto empático y bien escrito no reemplaza la verificación."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Nada: si conoce tu carga de trabajo, es él",
+              "retroalimentacion": "Eso se puede suponer o inventar; no prueba identidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el mensaje no tenga faltas",
+              "retroalimentacion": "No tener faltas ya no sirve como prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el reporte sea para el directorio",
+              "retroalimentacion": "La excusa no cambia la necesidad de verificar."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Enviarlo solo si es antes de las 9",
+              "retroalimentacion": "La hora no importa."
+            }
+          ]
+        }
+      ],
+      "preguntas_avanzado": [
+        {
+          "mensaje": {
+            "id": "IA-A1",
+            "remitente": {
+              "nombre": "Lucía Herrera - Finanzas",
+              "correo": "lucia.herrera@empresa.com"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Cierre del proyecto Andino",
+            "cuerpo": "Hola Gabriel:\n\nRetomando lo que vimos en la reunión del martes sobre el cierre del proyecto Andino, el proveedor ya envió su nueva cuenta. Te dejo los datos para que la registres y quede lista para el pago del viernes. Cualquier cosa me escribes por aquí, #IA-A1-1#.",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-A1-1",
+                "texto_indicador": "hoy estoy sin teléfono",
+                "retroalimentacion": "Si la cuenta fue comprometida, la IA permite imitar el estilo de la persona y citar hechos reales. El cambio de cuenta y evitar el teléfono son las señales."
+              }
+            ]
+          },
+          "enunciado": "El correo cita una reunión real, viene de empresa.com y está perfectamente escrito. ¿Qué haces?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Verificar con Lucía por un canal distinto antes de registrar cualquier cuenta nueva",
+              "retroalimentacion": "¡Correcto! Si la cuenta fue comprometida, la IA permite imitar el estilo de la persona y citar hechos reales. El cambio de cuenta y evitar el teléfono son las señales."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Registrar la cuenta, porque todo coincide",
+              "retroalimentacion": "Que todo coincida es justo lo que logra un ataque avanzado."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Responderle por correo para confirmar",
+              "retroalimentacion": "Si la cuenta está comprometida, el atacante confirmará."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Registrar la cuenta, pero no pagar todavía",
+              "retroalimentacion": "Registrarla ya deja todo listo para el fraude."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Revisar si el texto tiene errores",
+              "retroalimentacion": "No los tendrá; no es una prueba útil."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-A2",
+            "remitente": {
+              "nombre": "Prof. Ricardo Vega",
+              "correo": "ricardo.vega@ulima.edu.pe"
+            },
+            "destinatario": {
+              "nombre": "Gabriel Crisostomo"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Registro antiplagio antes de la sustentación",
+            "cuerpo": "Gabriel, excelente avance. Antes de la sustentación necesito que completes el registro en la plataforma antiplagio con tu cuenta institucional. El enlace lo generó la oficina de grados.\n\n#IA-A2-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-A2-1",
+                "texto_indicador": "Registro antiplagio",
+                "enlace": "https://turnitin-ulima.app/registro",
+                "retroalimentacion": "Aunque el remitente y el texto convenzan, el destino del enlace no es oficial. Ante la duda, consulta con el docente o la oficina por otro canal."
+              }
+            ]
+          },
+          "enunciado": "El remitente es institucional y el pedido suena lógico. ¿Qué detalle revisas?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "El dominio del enlace: turnitin-ulima.app no es de la universidad ni de Turnitin",
+              "retroalimentacion": "¡Exacto! Aunque el remitente y el texto convenzan, el destino del enlace no es oficial. Ante la duda, consulta con el docente o la oficina por otro canal."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguno: el profesor es real",
+              "retroalimentacion": "El remitente puede falsificarse; el enlace lo delata."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione la sustentación",
+              "retroalimentacion": "Es contexto real que le da credibilidad."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que diga «excelente avance»",
+              "retroalimentacion": "El elogio no es la prueba."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use la palabra antiplagio",
+              "retroalimentacion": "Las plataformas antiplagio existen; el problema es el dominio."
+            }
+          ]
+        },
+        {
+          "mensaje": {
+            "id": "IA-A3",
+            "remitente": {
+              "nombre": "Daniela Ortiz - SoftPro",
+              "correo": "daniela.ortiz@softpro.com.pe"
+            },
+            "destinatario": {
+              "nombre": "Usuario"
+            },
+            "fecha": "Hoy, 09:30",
+            "asunto": "Orden de compra corregida",
+            "cuerpo": "Estimado Gabriel:\n\nTal como acordamos en la videollamada del jueves (te dejo abajo el resumen que generó la IA de la reunión), te comparto la orden de compra corregida. Por favor apruébala hoy para cumplir el cronograma.\n\n#IA-A3-1#",
+            "adjunto": null,
+            "indicadores": [
+              {
+                "id_indicador": "IA-A3-1",
+                "texto_indicador": "Aprobar orden de compra",
+                "enlace": "https://softpro-ordenes.com/aprobar",
+                "retroalimentacion": "En el nivel avanzado las señales son sutiles y van juntas. Verifica la orden en el sistema de compras o llamando al proveedor."
+              }
+            ]
+          },
+          "enunciado": "El mensaje incluso menciona un resumen de reunión hecho por IA. ¿Qué combinación de señales lo delata?",
+          "respuestas": [
+            {
+              "flag_respuesta": 1,
+              "texto_respuesta": "Te apura a aprobar hoy, el enlace va a un dominio distinto al del proveedor y no puedes confirmar esa videollamada",
+              "retroalimentacion": "¡Correcto! En el nivel avanzado las señales son sutiles y van juntas. Verifica la orden en el sistema de compras o llamando al proveedor."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que mencione la IA",
+              "retroalimentacion": "Mencionar la IA no prueba nada; muchas reuniones usan resúmenes automáticos."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que el proveedor sea real",
+              "retroalimentacion": "Que sea real es justo lo que el atacante aprovecha."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Que use tu nombre",
+              "retroalimentacion": "La personalización es fácil con IA."
+            },
+            {
+              "flag_respuesta": 0,
+              "texto_respuesta": "Ninguna: es un correo normal de trabajo",
+              "retroalimentacion": "Revisa el dominio del enlace y la presión del plazo."
+            }
+          ]
+        }
+      ],
+      "insignia": {
+        "nombre": "Verificador anti-IA",
+        "descripcion": "Se conquista al acertar la pregunta de nivel avanzado de Correos escritos con inteligencia artificial.",
+        "figura": {
+          "nombre_archivo": "verificador-anti-ia.svg"
+        }
+      }
+    }
+  ]
+}

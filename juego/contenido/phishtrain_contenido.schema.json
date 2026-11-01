@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phishtrain_contenido.schema.json",
+  "title": "Contenido del juego PhishTrain",
+  "description": "Estructura definida con el asesor (22 y 28 de octubre de 2026). Tipo de ataque: (nombre, descripcion, preguntas_basico*, preguntas_intermedio*, preguntas_avanzado*, insignia). En el cuerpo de cada mensaje los marcadores se escriben como #id_indicador#.",
+  "type": "object",
+  "required": [
+    "tipos_de_ataque"
+  ],
+  "properties": {
+    "tipos_de_ataque": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/tipo_de_ataque"
+      }
+    }
+  },
+  "$defs": {
+    "texto": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tipo_de_ataque": {
+      "type": "object",
+      "required": [
+        "nombre",
+        "descripcion",
+        "preguntas_basico",
+        "preguntas_intermedio",
+        "preguntas_avanzado",
+        "insignia"
+      ],
+      "properties": {
+        "nombre": {
+          "$ref": "#/$defs/texto"
+        },
+        "descripcion": {
+          "$ref": "#/$defs/texto"
+        },
+        "preguntas_basico": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pregunta"
+          }
+        },
+        "preguntas_intermedio": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pregunta"
+          }
+        },
+        "preguntas_avanzado": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/pregunta"
+          }
+        },
+        "insignia": {
+          "$ref": "#/$defs/insignia"
+        }
+      }
+    },
+    "pregunta": {
+      "type": "object",
+      "required": [
+        "mensaje",
+        "enunciado",
+        "respuestas"
+      ],
+      "properties": {
+        "mensaje": {
+          "$ref": "#/$defs/mensaje"
+        },
+        "enunciado": {
+          "$ref": "#/$defs/texto"
+        },
+        "respuestas": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/respuesta"
+          }
+        }
+      }
+    },
+    "mensaje": {
+      "type": "object",
+      "required": [
+        "id",
+        "remitente",
+        "destinatario",
+        "fecha",
+        "asunto",
+        "cuerpo",
+        "adjunto",
+        "indicadores"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/texto"
+        },
+        "remitente": {
+          "type": "object",
+          "required": [
+            "nombre",
+            "correo"
+          ],
+          "properties": {
+            "nombre": {
+              "$ref": "#/$defs/texto"
+            },
+            "correo": {
+              "$ref": "#/$defs/texto"
+            }
+          }
+        },
+        "destinatario": {
+          "type": "object",
+          "required": [
+            "nombre"
+          ],
+          "properties": {
+            "nombre": {
+              "$ref": "#/$defs/texto"
+            }
+          }
+        },
+        "fecha": {
+          "type": "string"
+        },
+        "asunto": {
+          "$ref": "#/$defs/texto"
+        },
+        "cuerpo": {
+          "description": "Secuencia de texto alternada con marcadores #id_indicador#.",
+          "$ref": "#/$defs/texto"
+        },
+        "adjunto": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "required": [
+                "nombre_archivo"
+              ],
+              "properties": {
+                "nombre_archivo": {
+                  "$ref": "#/$defs/texto"
+                }
+              }
+            }
+          ]
+        },
+        "indicadores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/indicador"
+          }
+        }
+      }
+    },
+    "indicador": {
+      "type": "object",
+      "required": [
+        "id_indicador",
+        "texto_indicador",
+        "retroalimentacion"
+      ],
+      "properties": {
+        "id_indicador": {
+          "type": "string",
+          "pattern": "^[^#\\s]+$"
+        },
+        "texto_indicador": {
+          "$ref": "#/$defs/texto"
+        },
+        "enlace": {
+          "description": "Solo si el marcador es un enlace: su destino real.",
+          "type": "string"
+        },
+        "retroalimentacion": {
+          "type": "string",
+          "description": "Explicación del marcador. Vacía solo en un enlace que no es marcador."
+        }
+      }
+    },
+    "respuesta": {
+      "type": "object",
+      "required": [
+        "flag_respuesta",
+        "texto_respuesta",
+        "retroalimentacion"
+      ],
+      "properties": {
+        "flag_respuesta": {
+          "description": "1 si la respuesta es correcta, 0 si es incorrecta.",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "texto_respuesta": {
+          "$ref": "#/$defs/texto"
+        },
+        "retroalimentacion": {
+          "$ref": "#/$defs/texto"
+        }
+      }
+    },
+    "insignia": {
+      "type": "object",
+      "required": [
+        "nombre",
+        "descripcion",
+        "figura"
+      ],
+      "properties": {
+        "nombre": {
+          "$ref": "#/$defs/texto"
+        },
+        "descripcion": {
+          "$ref": "#/$defs/texto"
+        },
+        "figura": {
+          "type": "object",
+          "required": [
+            "nombre_archivo"
+          ],
+          "properties": {
+            "nombre_archivo": {
+              "$ref": "#/$defs/texto"
+            }
+          }
+        }
+      }
+    }
+  }
+}

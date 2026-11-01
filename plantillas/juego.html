@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}PhishTrain · Bandeja de entrada{% endblock %}
+{% block clase_body %}pagina-juego{% endblock %}
+{% block contenido %}
+<div class="juego" id="juego"
+     data-url-estado="{% url 'api_estado' %}"
+     data-url-abrir="{% url 'api_abrir' %}"
+     data-url-pregunta="{% url 'api_pregunta' %}"
+     data-url-responder="{% url 'api_responder' %}">
+    <header class="barra-superior">
+        <button type="button" class="boton-menu" id="botonMenu" aria-label="Abrir menú">☰</button>
+        <span class="barra-marca"><span class="barra-icono" aria-hidden="true">⋮⋮⋮</span><strong>PhishTrain</strong><span class="barra-subtitulo">Outlook 365 simulado</span></span>
+        <span class="barra-buscar" aria-hidden="true">⌕ Buscar</span>
+        <span class="barra-insignias" title="Insignias conquistadas">★ <b id="contadorInsignias">0</b> de <b id="totalInsignias">{{ total_ataques }}</b> insignias</span>
+    </header>
+
+    <nav class="menu" id="menu" aria-label="Menú principal">
+        <button type="button" class="menu-item activo" data-vista="bandeja"><span aria-hidden="true">✉</span>Bandeja de entrada<b id="contadorBandeja">{{ total_ataques }}</b></button>
+        <button type="button" class="menu-item" data-vista="progreso"><span aria-hidden="true">▥</span>Mi progreso</button>
+        <button type="button" class="menu-item" data-vista="insignias"><span aria-hidden="true">★</span>Mis insignias<b id="contadorMisInsignias">0</b></button>
+        <a class="menu-salir" href="{% url 'portada' %}">← Volver al inicio</a>
+    </nav>
+    <div class="menu-fondo oculto" id="fondoMenu"></div>
+
+    <section class="lista" aria-label="Bandeja de entrada">
+        <div class="lista-cabecera"><h1>Bandeja de entrada</h1><span id="textoLista">Elige un mensaje para empezar su ruta.</span></div>
+        <div class="lista-correos" id="listaCorreos" role="list"><p class="lista-vacia">Cargando mensajes...</p></div>
+    </section>
+
+    <main class="lector" id="lector">
+        <!-- Ningún mensaje abierto -->
+        <section class="lector-vacio" id="vistaVacia">
+            <span class="lector-vacio-icono" aria-hidden="true">✉</span>
+            <h2>Selecciona un mensaje de la bandeja</h2>
+            <p>Cada mensaje es un tipo de ataque. Al abrirlo recorrerás su ruta:</p>
+            <ol class="ruta-mini" aria-label="Ruta de cada ataque">
+                <li>Básico</li><li>Intermedio</li><li>Avanzado</li><li>★ Insignia</li>
+            </ol>
+        </section>
+
+        <!-- Ruta de un ataque -->
+        <section class="ruta oculto" id="vistaRuta">
+            <header class="ruta-cabecera">
+                <div class="ruta-titulo"><small id="rutaNumero">ATAQUE 1 DE {{ total_ataques }}</small><strong id="rutaNombre"></strong></div>
+                <ol class="pasos" id="pasosNivel" aria-label="Nivel de la ruta">
+                    <li>Básico</li><li>Intermedio</li><li>Avanzado</li><li>★ Insignia</li>
+                </ol>
+                <button type="button" class="boton boton-secundario boton-volver" id="botonVolver">← Volver a la bandeja</button>
+            </header>
+            <p class="nota-volver">Puedes volver a la bandeja en cualquier momento. Si sales sin ganar la insignia, este ataque empezará otra vez desde el nivel Básico.</p>
+
+            <article class="correo">
+                <span class="correo-etiqueta oculto" id="etiquetaCorreo"></span>
+                <h2 id="asuntoCorreo"></h2>
+                <div class="correo-de">
+                    <span class="avatar" id="avatarCorreo">?</span>
+                    <div><strong id="nombreRemitente"></strong> <span class="correo-direccion" id="correoRemitente"></span><small>Para: <span id="destinatarioCorreo"></span></small></div>
+                    <time id="fechaCorreo"></time>
+                </div>
+                <div class="correo-cuerpo" id="cuerpoCorreo"></div>
+                <button type="button" class="correo-enlace oculto" id="enlaceCorreo"></button>
+                <div class="correo-adjunto oculto" id="adjuntoCorreo"><span aria-hidden="true">📎</span><strong id="nombreAdjunto"></strong></div>
+                <div class="barra-estado" id="barraEstado" aria-live="polite"></div>
+            </article>
+
+            <!-- Área de entrenamiento guiado: su contenido cambia en cada paso -->
+            <section class="entrenamiento" id="areaEntrenamiento" aria-live="polite">
+                <div class="entrenamiento-cabecera"><span class="entrenamiento-titulo">ÁREA DE ENTRENAMIENTO GUIADO</span><span class="entrenamiento-paso" id="pasoEntrenamiento"></span></div>
+                <div id="cuerpoEntrenamiento"></div>
+            </section>
+        </section>
+
+        <!-- Mi progreso -->
+        <section class="panel oculto" id="vistaProgreso">
+            <h2>Mi progreso</h2>
+            <div class="resumen" id="resumenProgreso"></div>
+            <div class="tabla-progreso" id="tablaProgreso" role="table" aria-label="Progreso por tipo de ataque"></div>
+            <h3>¿Qué se trabaja en cada nivel?</h3>
+            <ul class="lista-niveles" id="listaNiveles"></ul>
+        </section>
+
+        <!-- Mis insignias -->
+        <section class="panel oculto" id="vistaInsignias">
+            <h2>Mis insignias</h2>
+            <p class="panel-texto">Ganas la insignia de un ataque cuando aciertas su pregunta de nivel Avanzado.</p>
+            <div class="grilla-insignias" id="grillaInsignias"></div>
+        </section>
+
+        <!-- Entrenamiento completado -->
+        <section class="completado oculto" id="vistaCompletado">
+            <span class="completado-icono" aria-hidden="true">🏆</span>
+            <h2>¡Entrenamiento completado!</h2>
+            <p>Conquistaste las <span id="totalCompletado">{{ total_ataques }}</span> insignias: ya recorriste los niveles básico, intermedio y avanzado de todos los tipos de ataque.</p>
+            <div class="grilla-insignias grilla-insignias-chica" id="insigniasCompletado"></div>
+            <div class="completado-acciones">
+                <button type="button" class="boton boton-principal" data-ir="progreso">Ver mi progreso</button>
+                <form method="post" action="{% url 'reiniciar' %}">{% csrf_token %}<button type="submit" class="boton boton-secundario">Empezar de nuevo</button></form>
+            </div>
+        </section>
+    </main>
+    <div class="aviso" id="aviso" role="status"></div>
+    <form class="oculto">{% csrf_token %}</form>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="{% static 'js/app.js' %}"></script>{% endblock %}

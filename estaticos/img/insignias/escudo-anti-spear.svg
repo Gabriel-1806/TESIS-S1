@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" role="img" aria-label="Insignia Escudo anti-spear">
+  <defs>
+    <radialGradient id="g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff6cf"/><stop offset="1" stop-color="#e9b730"/></radialGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2410c"/><stop offset="1" stop-color="#7c2d12"/></linearGradient>
+  </defs>
+  <path d="M62 120 L40 215 L70 198 L86 226 L100 140 Z" fill="#7c2d12"/>
+  <path d="M138 120 L160 215 L130 198 L114 226 L100 140 Z" fill="#7c2d12"/>
+  <circle cx="100" cy="92" r="84" fill="url(#g)" stroke="#b8860b" stroke-width="5"/>
+  <circle cx="100" cy="92" r="66" fill="url(#c)" stroke="#fff" stroke-width="4"/>
+  <text x="100" y="114" text-anchor="middle" font-size="58" font-family="Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif">🎯</text>
+</svg>
